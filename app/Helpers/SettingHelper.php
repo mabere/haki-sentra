@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @copyright Copyright (c) 2026 Ramli (ramli.baharuddin@gmail.com)
+ * @license   All Rights Reserved
+ */
+
 use App\Models\AppSetting;
 
 if (!function_exists('app_setting')) {

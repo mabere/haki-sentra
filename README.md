@@ -44,3 +44,8 @@ Pastikan hosting menyediakan PHP 8.3 atau lebih baru, MySQL/MariaDB, dan ekstens
 - File `.env` berisi rahasia hosting; jangan unggah atau kirimkan kepada orang lain.
 - Folder `storage` menyimpan file aplikasi. Pastikan file privat tidak dapat diakses langsung melalui URL publik.
 - Bila hosting tidak menyediakan Terminal, minta penyedia hosting menjalankan Composer dan perintah Artisan di atas.
+
+## Hak Cipta & Lisensi
+
+Copyright &copy; 2026 **Ramli** (<ramli.baharuddin@gmail.com>).  
+**All Rights Reserved** — Seluruh kode sumber dilindungi hak cipta. Lihat berkas [LICENSE](LICENSE) untuk ketentuan lengkap.

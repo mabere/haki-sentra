@@ -1,6 +1,8 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
     "private": true,
+    "author": "Ramli <ramli.baharuddin@gmail.com>",
+    "license": "UNLICENSED",
     "type": "module",
     "scripts": {
         "build": "vite build",

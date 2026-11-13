@@ -145,7 +145,7 @@
     <!-- Filter & Search Bar -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 space-y-4">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            
+
             <!-- Category Tabs -->
             <div class="flex items-center gap-1 overflow-x-auto pb-1 lg:pb-0 scrollbar-none text-sm font-semibold">
                 <a href="{{ route('admin.informasi.index', ['tab' => 'all', 'q' => $search]) }}"
@@ -224,9 +224,9 @@
                                         </span>
                                     @endif
                                 </div>
-                                @if($item->description)
+                                {{-- @if($item->description)
                                     <p class="text-sm text-slate-500 line-clamp-2 mt-0.5">{{ $item->description }}</p>
-                                @endif
+                                @endif --}}
                                 <div class="flex items-center gap-2 text-[11px] text-slate-400 mt-1">
                                     <span>Slug: <code class="font-mono text-slate-600">{{ $item->slug }}</code></span>
                                     <span>•</span>
@@ -350,7 +350,7 @@
 
             <form method="POST" action="{{ route('admin.informasi.store') }}" enctype="multipart/form-data" class="space-y-4 text-sm">
                 @csrf
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Kategori -->
                     <div>
@@ -468,7 +468,7 @@
             <form method="POST" :action="editData.update_url" enctype="multipart/form-data" class="space-y-4 text-sm">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Kategori -->
                     <div>

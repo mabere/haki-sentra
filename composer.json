@@ -1,13 +1,21 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/blank-livewire-starter-kit",
+    "name": "ramli/aplikasi-haki",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "Sistem Informasi Manajemen Kekayaan Intelektual & Publikasi Ilmiah (Sentra HKI).",
     "keywords": [
         "laravel",
-        "framework"
+        "haki",
+        "sentra-hki",
+        "lppm"
     ],
-    "license": "MIT",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramli",
+            "email": "ramli.baharuddin@gmail.com"
+        }
+    ],
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.7",
