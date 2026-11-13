@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentra HKI - Universitas Panca Sakti Bekasi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Poppins & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        gold: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-navy-900 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-navy-900 to-navy-800 flex items-center justify-center text-white shadow-md shadow-navy-900/20">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-gold-500"></i>
+                    </div>
+                    <div>
+                        <span class="block font-heading font-bold text-lg sm:text-xl text-navy-900 tracking-tight">Sentra HKI</span>
+                        <span class="block text-xs font-medium text-slate-500">Universitas Panca Sakti Bekasi</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#beranda" class="px-3 py-2 rounded-lg text-sm font-medium text-navy-900 bg-slate-100 transition-colors">Beranda</a>
+                    <a href="#tentang" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">Tentang Kami</a>
+                    <a href="#layanan" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">Layanan</a>
+                    <a href="#alur" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">Panduan & SOP</a>
+                    <a href="#dokumen" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">Dokumen</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">FAQ</a>
+                    <a href="#kontak" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openModal('pengajuan')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-navy-900 text-white font-medium text-sm shadow-lg shadow-navy-900/25 hover:bg-navy-800 transition-all transform hover:-translate-y-0.5">
+                        <i data-lucide="file-plus" class="w-4 h-4 text-gold-500"></i>
+                        Ajukan Permohonan
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="#beranda" class="block px-3 py-2 rounded-lg text-base font-medium text-navy-900 bg-slate-50">Beranda</a>
+            <a href="#tentang" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">Tentang Kami</a>
+            <a href="#layanan" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">Layanan</a>
+            <a href="#alur" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">Panduan & SOP</a>
+            <a href="#dokumen" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">Dokumen</a>
+            <a href="#faq" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">FAQ</a>
+            <a href="#kontak" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-50">Kontak</a>
+            <div class="pt-2">
+                <button onclick="openModal('pengajuan')" class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-navy-900 text-white font-medium text-sm shadow-md">
+                    <i data-lucide="file-plus" class="w-4 h-4 text-gold-500"></i>
+                    Ajukan Permohonan
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative overflow-hidden bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 text-white py-20 lg:py-28">
+        <!-- Background Glow Elements -->
+        <div class="absolute inset-0 opacity-15 pointer-events-none">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-gold-500 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 text-gold-400 text-xs sm:text-sm font-medium backdrop-blur">
+                        <i data-lucide="award" class="w-4 h-4"></i>
+                        Pusat Layanan Resmi Hak Kekayaan Intelektual Universitas
+                    </div>
+                    <h1 class="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
+                        Lindungi Inovasi, <br>Karya, & Riset <span class="text-gold-500 underline decoration-gold-500/50 decoration-wavy">Intelektual</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Sentra HKI Universitas Panca Sakti Bekasi siap mendampingi sivitas akademika dan masyarakat umum dalam pengurusan Hak Cipta, Paten, Merek, dan Desain Industri secara cepat, legal, dan profesional.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="openModal('pengajuan')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base shadow-xl shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+                            <i data-lucide="arrow-right-circle" class="w-5 h-5"></i>
+                            Mulai Pengajuan HKI
+                        </button>
+                        <a href="#alur" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-base border border-white/20 backdrop-blur transition-all">
+                            <i data-lucide="book-open" class="w-5 h-5 text-gold-400"></i>
+                            Unduh Panduan SOP
+                        </a>
+                    </div>
+
+                    <!-- Quick Search / Status Tracker -->
+                    <div class="pt-6 max-w-xl mx-auto lg:mx-0">
+                        <div class="bg-white/10 p-3 rounded-2xl border border-white/10 backdrop-blur flex items-center gap-2">
+                            <div class="flex-1 flex items-center gap-2 px-3 bg-white/5 rounded-xl">
+                                <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+                                <input type="text" id="search-code" placeholder="Cek kode usulan / No. Permohonan..." class="w-full bg-transparent py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none">
+                            </div>
+                            <button onclick="checkStatus()" class="px-5 py-2.5 bg-navy-800 hover:bg-navy-700 text-white font-medium text-sm rounded-xl transition-colors shrink-0">
+                                Cek Status
+                            </button>
+                        </div>
+                        <div id="search-result" class="text-xs text-gold-400 mt-2 hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Right Illustration / Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative box glow -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-gold-500 to-blue-600 rounded-3xl blur-2xl opacity-20 transform rotate-3"></div>
+                        
+                        <!-- Main Card -->
+                        <div class="relative bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500">
+                                        <i data-lucide="award" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-white text-base">Layanan Prioritas</h3>
+                                        <p class="text-xs text-slate-400">Sertifikasi Resmi Ditjen HKI</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">Aktif 2026</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                    <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 shrink-0">
+                                        <i data-lucide="book" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Hak Cipta (Copyright)</h4>
+                                        <p class="text-xs text-slate-400 mt-0.5">Buku, Penelitian, Program Komputer, Karya Seni & Musik.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                    <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
+                                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Paten & Paten Sederhana</h4>
+                                        <p class="text-xs text-slate-400 mt-0.5">Inovasi teknologi, alat peraga, dan proses industri.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                    <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                                        <i data-lucide="tag" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Merek Dagang & Jasa</h4>
+                                        <p class="text-xs text-slate-400 mt-0.5">Logo produk, brand usaha mahasiswa & startup kampus.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2">
+                                <a href="#layanan" class="block w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-sm font-medium text-white transition-colors">
+                                    Lihat Semua Kategori Layanan &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistik Singkat (Stat Bar) -->
+    <section class="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/80 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+            <div class="text-center px-4 py-2">
+                <div class="inline-flex p-3 rounded-2xl bg-blue-50 text-blue-600 mb-3">
+                    <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-navy-900">1,250+</div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Hak Cipta Terdaftar</div>
+            </div>
+            <div class="text-center px-4 py-2 pt-4 sm:pt-2">
+                <div class="inline-flex p-3 rounded-2xl bg-amber-50 text-amber-600 mb-3">
+                    <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-navy-900">145+</div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Paten & Sederhana</div>
+            </div>
+            <div class="text-center px-4 py-2 pt-4 sm:pt-2">
+                <div class="inline-flex p-3 rounded-2xl bg-emerald-50 text-emerald-600 mb-3">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-navy-900">320+</div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Merek & Desain Industri</div>
+            </div>
+            <div class="text-center px-4 py-2 pt-4 sm:pt-2">
+                <div class="inline-flex p-3 rounded-2xl bg-purple-50 text-purple-600 mb-3">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold font-heading text-navy-900">99.8%</div>
+                <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Tingkat Keberhasilan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami Section -->
+    <section id="tentang" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-xs sm:text-sm font-semibold">
+                    <i data-lucide="info" class="w-4 h-4 text-gold-600"></i>
+                    Tentang Sentra HKI
+                </div>
+                <h2 class="font-heading font-bold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+                    Mendorong Budaya Inovasi & Pelindungan Hukum Kampus
+                </h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Sentra Kekayaan Intelektual (HKI) Universitas Panca Sakti Bekasi adalah unit layanan resmi di bawah Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) yang bertugas memberikan edukasi, pendampingan, serta fasilitasi pendaftaran Hak Kekayaan Intelektual bagi seluruh sivitas akademika dan masyarakat luas.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                        <div class="p-2 rounded-xl bg-navy-900 text-white shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4 text-gold-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-navy-900">Konsultasi Ahli</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Didampingi oleh konsultan HKI berpengalaman.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                        <div class="p-2 rounded-xl bg-navy-900 text-white shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4 text-gold-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-navy-900">Proses Transparan</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Tracking usulan secara online dan realtime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-6">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gold-500/10 rounded-3xl transform rotate-3"></div>
+                    <div class="relative bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl font-bold font-heading">
+                                20
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-navy-900">Tahun Dedikasi Inovasi</h3>
+                                <p class="text-sm text-slate-500">Melayani ratusan riset dan hak cipta dosen & mahasiswa.</p>
+                            </div>
+                        </div>
+                        <blockquote class="text-slate-600 text-sm italic border-l-4 border-gold-500 pl-4 py-1">
+                            "Perlindungan kekayaan intelektual bukan sekadar legalitas hukum, tetapi bentuk penghargaan tertinggi terhadap kreativitas dan karya anak bangsa."
+                        </blockquote>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                            <span>Ketua Sentra HKI Universitas</span>
+                            <span class="text-navy-900 font-bold">Dr. H. Ahmad Fauzi, M.Pd.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layanan Utama Section (Grid Cards) -->
+    <section id="layanan" class="py-20 bg-slate-100/70 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                <span class="px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-xs font-semibold">
+                    Kategori Layanan
+                </span>
+                <h2 class="font-heading font-bold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+                    Pilih Layanan HKI yang Anda Butuhkan
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Kami melayani berbagai jenis pendaftaran Kekayaan Intelektual dengan panduan persyaratan yang jelas dan mudah.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1: Hak Cipta -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                            <i data-lucide="book-open" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Hak Cipta</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Perlindungan untuk karya tulis, buku, modul ajar, program komputer, seni rupa, musik, video, dan riset ilmiah.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <button onclick="openModal('hak-cipta')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                            <span>Panduan & Syarat</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Paten -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Paten & Sederhana</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Perlindungan invensi di bidang teknologi, mesin, alat tepat guna, maupun pembaharuan proses produksi industri.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <button onclick="openModal('paten')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                            <span>Panduan & Syarat</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Merek -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                            <i data-lucide="tag" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Merek Dagang</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Pendaftaran logo, nama produk, brand usaha kuliner, fashion, maupun jasa binaan inkubator bisnis universitas.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <button onclick="openModal('merek')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                            <span>Panduan & Syarat</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Desain Industri -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                            <i data-lucide="layout" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Desain Industri</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Kreasi bentuk, konfigurasi, atau komposisi garis dan warna pada suatu produk kerajinan atau manufaktur.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <button onclick="openModal('desain')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                            <span>Panduan & Syarat</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alur Layanan / Prosedur (Step-by-Step Workflow) -->
+    <section id="alur" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+            <span class="px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-xs font-semibold">
+                SOP Pengajuan
+            </span>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+                Alur Mudah Pengajuan HKI
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Proses pendaftaran dirancang cepat dan transparan dalam 4 tahapan utama.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <!-- Step 1 -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-gold-500 text-navy-950 font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-gold-500/30">
+                    01
+                </div>
+                <h3 class="font-heading font-bold text-lg text-navy-900">Konsultasi & Dokumen</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Pemohon menyiapkan draf karya/ciptaan dan berkas administratif pendukung (KTP, Surat Pernyataan Keaslian).
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
+                    02
+                </div>
+                <h3 class="font-heading font-bold text-lg text-navy-900">Unggah ke Sistem</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Mengisi formulir pengajuan online melalui portal Sentra HKI universitas dan melampirkan berkas scan asli.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
+                    03
+                </div>
+                <h3 class="font-heading font-bold text-lg text-navy-900">Verifikasi & Review</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Tim ahli Sentra HKI melakukan pemeriksaan kelayakan dokumen sebelum diajukan resmi ke DJKI Kementerian.
+                </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-emerald-600/30">
+                    04
+                </div>
+                <h3 class="font-heading font-bold text-lg text-navy-900">Terbit Sertifikat</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Sertifikat HKI resmi diterbitkan oleh DJKI dan dapat diunduh atau diambil langsung di kantor Sentra HKI.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dokumen & Template Unduhan Section -->
+    <section id="dokumen" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-gold-400 text-xs font-semibold">
+                        Pusat Unduhan
+                    </span>
+                    <h2 class="font-heading font-bold text-3xl sm:text-4xl mt-3 text-white tracking-tight">
+                        Template & Dokumen Penting
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-2">Unduh format surat pernyataan dan panduan resmi pendaftaran HKI.</p>
+                </div>
+                <button onclick="openModal('pengajuan')" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm transition-all">
+                    Ajukan Permohonan Baru
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3.5 rounded-2xl bg-blue-500/10 text-blue-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base text-white">Surat Pernyataan Hak Cipta</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Format DOCX • 245 KB</p>
+                        </div>
+                    </div>
+                    <button onclick="downloadFile('Surat Pernyataan Hak Cipta')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3.5 rounded-2xl bg-amber-500/10 text-amber-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base text-white">Panduan Pengajuan Paten</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Format PDF • 1.2 MB</p>
+                        </div>
+                    </div>
+                    <button onclick="downloadFile('Panduan Pengajuan Paten')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-400">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base text-white">Formulir Pendaftaran Merek</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Format DOCX • 310 KB</p>
+                        </div>
+                    </div>
+                    <button onclick="downloadFile('Formulir Pendaftaran Merek')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-16">
+            <span class="px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-xs font-semibold">
+                Pertanyaan Umum
+            </span>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl text-navy-900 tracking-tight">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Temukan jawaban atas hal-hal yang sering ditanyakan seputar layanan HKI.
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
+                <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <span>Berapa lama proses penerbitan sertifikat Hak Cipta?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
+                    </span>
+                </summary>
+                <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                    Untuk Hak Cipta melalui jalur kampus dan verifikasi DJKI biasanya memakan waktu sekitar 3 s.d. 7 hari kerja setelah berkas dinyatakan lengkap dan valid.
+                </p>
+            </details>
+
+            <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
+                <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <span>Apakah mahasiswa bisa mendaftarkan Hak Cipta tugas akhir/skripsi?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
+                    </span>
+                </summary>
+                <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                    Sangat bisa! Mahasiswa Universitas Panca Sakti Bekasi sangat didorong untuk mendaftarkan tugas akhir, skripsi, atau program komputer ciptaannya dengan pendampingan dari Sentra HKI.
+                </p>
+            </details>
+
+            <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
+                <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <span>Berapakah biaya pendaftaran melalui Sentra HKI Universitas?</span>
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
+                    </span>
+                </summary>
+                <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                    Biaya PNBP (Penerimaan Negara Bukan Pajak) disesuaikan dengan tarif resmi DJKI. Untuk sivitas akademika universitas, tersedia tarif khusus dan fasilitasi bantuan subsidi dari LPPM.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-navy-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500 flex items-center justify-center text-navy-950">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-heading font-bold text-lg text-white">Sentra HKI</span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Pusat Layanan Hak Kekayaan Intelektual Universitas Panca Sakti Bekasi. Melindungi karya, mewujudkan inovasi mandiri.
+                </p>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-heading font-semibold text-white text-sm">Tautan Cepat</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#beranda" class="hover:text-gold-400 transition-colors">Beranda</a></li>
+                    <li><a href="#tentang" class="hover:text-gold-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Layanan HKI</a></li>
+                    <li><a href="#alur" class="hover:text-gold-400 transition-colors">Panduan & SOP</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-heading font-semibold text-white text-sm">Layanan Utama</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Pendaftaran Hak Cipta</a></li>
+                    <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Paten & Paten Sederhana</a></li>
+                    <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Merek Dagang & Jasa</a></li>
+                    <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Desain Industri</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-heading font-semibold text-white text-sm">Kontak & Sekretariat</h4>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Gedung LPPM Lantai 2, Kampus Universitas Panca Sakti Bekasi<br>
+                    Jl. Raya Hankam, Pondok Melati, Kota Bekasi, Jawa Barat.<br>
+                    Email: sentrahki@pancasakti.ac.id<br>
+                    WhatsApp: +62 812-3456-7890
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+            <p>&copy; 2026 Sentra HKI Universitas Panca Sakti Bekasi. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0">Prototipe UI terinspirasi dari Sentra HKI UM</p>
+        </div>
+    </footer>
+
+    <!-- Modal Dialog Interaktif -->
+    <div id="app-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform transition-all animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modal-content" class="space-y-4">
+                <!-- Dinamis konten modal -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-navy-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-gold-500"></i>
+        <span id="toast-message" class="text-sm font-medium">Notifikasi berhasil</span>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Simulasi Cek Status Usulan
+        function checkStatus() {
+            const code = document.getElementById('search-code').value.trim();
+            const resultEl = document.getElementById('search-result');
+            if(!code) {
+                showToast('Masukkan nomor permohonan terlebih dahulu!');
+                return;
+            }
+            resultEl.classList.remove('hidden');
+            resultEl.innerHTML = `Status untuk <strong>#${code}</strong>: Sedang dalam tahap Verifikasi Substansial oleh Tim Ahli (Estimasi selesai 3 hari).`;
+            showToast('Pencarian status diproses!');
+        }
+
+        // Simulasi Unduh Dokumen
+        function downloadFile(fileName) {
+            showToast(`Mengunduh file: ${fileName}...`);
+        }
+
+        // Modal Control
+        function openModal(type) {
+            const modal = document.getElementById('app-modal');
+            const content = document.getElementById('modal-content');
+            
+            if(type === 'pengajuan') {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-xl bg-navy-900 text-gold-500">
+                                <i data-lucide="file-plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-navy-900">Formulir Pengajuan HKI</h3>
+                                <p class="text-xs text-slate-500">Silakan lengkapi data ringkas usulan Anda.</p>
+                            </div>
+                        </div>
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-3 pt-2">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap & Gelar</label>
+                                <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-900" placeholder="Cth: Dr. Budi Santoso, M.Kom">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori Layanan</label>
+                                <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-900">
+                                    <option>Hak Cipta (Buku, Penelitian, Program Komputer)</option>
+                                    <option>Paten / Paten Sederhana</option>
+                                    <option>Merek Dagang & Jasa</option>
+                                    <option>Desain Industri</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Ciptaan / Inovasi</label>
+                                <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-900" placeholder="Tuliskan judul lengkap karya...">
+                            </div>
+                            <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 text-white font-bold text-sm shadow-lg hover:bg-navy-800 transition-colors mt-4">
+                                Kirim Permohonan Usulan
+                            </button>
+                        </form>
+                    </div>
+                `;
+            } else if(type === 'hak-cipta') {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-xl bg-blue-50 text-blue-600 w-fit">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Panduan & Syarat Hak Cipta</h3>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                            <li>Scan KTP Asli Pencipta / Pemegang Hak Cipta.</li>
+                            <li>Surat Pernyataan Keaslian Karya (bermaterai 10.000).</li>
+                            <li>File Karya / Ciptaan (PDF, DOCX, MP3, MP4, atau Source Code).</li>
+                            <li>Abstrak atau deskripsi singkat karya ciptaan.</li>
+                        </ul>
+                        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm">Tutup</button>
+                    </div>
+                `;
+            } else if(type === 'paten') {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-xl bg-amber-50 text-amber-600 w-fit">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Panduan & Syarat Paten</h3>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                            <li>Deskripsi Invensi / Spesifikasi Teknis Paten.</li>
+                            <li>Gambar teknik atau skema alat/proses.</li>
+                            <li>Surat Pernyataan Kepemilikan Invensi oleh Inventor.</li>
+                            <li>Surat Pengalihan Hak (jika inventor bukan pemohon tunggal).</li>
+                        </ul>
+                        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm">Tutup</button>
+                    </div>
+                `;
+            } else if(type === 'merek') {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 w-fit">
+                            <i data-lucide="tag" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Panduan & Syarat Merek Dagang</h3>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                            <li>Label / Logo Merek dengan resolusi tinggi.</li>
+                            <li>Kelas Merek / Jenis barang atau jasa yang diperdagangkan.</li>
+                            <li>Identitas pemohon (KTP / Akta Pendirian Badan Usaha).</li>
+                            <li>Surat Pernyataan Pemilik Merek.</li>
+                        </ul>
+                        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm">Tutup</button>
+                    </div>
+                `;
+            } else if(type === 'desain') {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-xl bg-purple-50 text-purple-600 w-fit">
+                            <i data-lucide="layout" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-navy-900">Panduan & Syarat Desain Industri</h3>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                            <li>Gambar atau foto produk dari berbagai sudut pandang (perspektif, atas, bawah, samping).</li>
+                            <li>Uraian desain industri.</li>
+                            <li>Surat Pernyataan kepemilikan desain.</li>
+                        </ul>
+                        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm">Tutup</button>
+                    </div>
+                `;
+            }
+
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('app-modal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            closeModal();
+            showToast('Permohonan berhasil dikirim! Tim kami akan segera menghubungi Anda.');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
