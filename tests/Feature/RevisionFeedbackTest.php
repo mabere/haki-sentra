@@ -46,7 +46,7 @@ class RevisionFeedbackTest extends TestCase
 
     public function test_dosen_can_reply_and_resubmit_work(): void
     {
-        Storage::fake('public');
+        Storage::fake('private');
 
         $ipr = IntellectualProperty::first();
         $dosen = $ipr->user;
@@ -67,7 +67,7 @@ class RevisionFeedbackTest extends TestCase
         $comment = RevisionComment::where('verifiable_id', $ipr->id)->where('user_id', $dosen->id)->first();
         $this->assertNotNull($comment);
         $this->assertNotNull($comment->attachment_path);
-        Storage::disk('public')->assertExists($comment->attachment_path);
+        Storage::disk('private')->assertExists($comment->attachment_path);
 
         $ipr->refresh();
         $this->assertEquals('pending', $ipr->verification_status);

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ app_setting('app_name', 'Sentra HKI') }} - {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</title>
+    <title>{{ app_setting('app_name', 'Sentra HKI') }} -
+        {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ app_setting_logo('favicon') }}">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Poppins & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -37,10 +41,21 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+        }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-navy-900 selection:text-white">
 
     <!-- Top Bar Informasi Singkat -->
@@ -52,68 +67,93 @@
             </div>
             <div class="flex items-center gap-5 text-slate-400">
                 <span class="hidden md:inline">🕒 Jam Layanan: Sen - Jum (08.00 - 16.00 WIB)</span>
-                <a href="mailto:sentrahki@pancasakti.ac.id" class="hover:text-gold-400 transition">✉️ sentrahki@pancasakti.ac.id</a>
+                <a href="mailto:sentrahki@pancasakti.ac.id" class="hover:text-gold-400 transition">✉️
+                    sentrahki@pancasakti.ac.id</a>
             </div>
         </div>
     </div>
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all duration-300">
+    <header
+        class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo & Brand -->
                 <a href="#beranda" class="flex items-center gap-3 group shrink-0">
-                    <img src="{{ app_setting_logo('logo') }}" alt="Logo {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}" class="h-11 w-11 object-contain drop-shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                    <img src="{{ app_setting_logo('logo') }}"
+                        alt="Logo {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}"
+                        class="h-11 w-11 object-contain drop-shadow-sm group-hover:scale-105 transition-transform shrink-0">
                     <div>
-                        <span class="block font-heading font-bold text-base sm:text-lg text-navy-900 tracking-tight leading-none">{{ app_setting('app_name', 'Sentra HKI') }}</span>
-                        <span class="block text-[11px] font-medium text-slate-500 mt-1">{{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</span>
+                        <span
+                            class="block font-heading font-bold text-base sm:text-lg text-navy-900 tracking-tight leading-none">{{ app_setting('app_name', 'Sentra HKI') }}</span>
+                        <span
+                            class="block text-[11px] font-medium text-slate-500 mt-1">{{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</span>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation Menu (Rapi & Terstruktur dengan Grup Dropdown) -->
                 <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
                     <!-- 1. Beranda -->
-                    <a href="#beranda" class="px-3 py-2 rounded-xl text-sm font-semibold text-navy-900 hover:bg-slate-100 transition-colors">
+                    <a href="#beranda"
+                        class="px-3 py-2 rounded-xl text-sm font-semibold text-navy-900 hover:bg-slate-100 transition-colors">
                         Beranda
                     </a>
 
                     <!-- 2. Grup Profil & Layanan (Dropdown) -->
                     <div class="relative group">
-                        <button type="button" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 flex items-center gap-1.5 transition-colors focus:outline-none">
+                        <button type="button"
+                            class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 flex items-center gap-1.5 transition-colors focus:outline-none">
                             <span>Profil & Layanan</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform duration-200 group-hover:rotate-180"></i>
+                            <i data-lucide="chevron-down"
+                                class="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform duration-200 group-hover:rotate-180"></i>
                         </button>
-                        
+
                         <!-- Dropdown Menu -->
-                        <div class="absolute left-0 top-full pt-2 w-72 hidden group-hover:block transition-all duration-200 z-50">
+                        <div
+                            class="absolute left-0 top-full pt-2 w-72 hidden group-hover:block transition-all duration-200 z-50">
                             <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1">
-                                <a href="#tentang" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+                                <a href="#tentang"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="info" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-blue-600 transition-colors">Tentang Sentra HKI</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Visi, peran & profil LPPM Universitas</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-blue-600 transition-colors">
+                                            Tentang Sentra HKI</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Visi, peran & profil
+                                            LPPM Universitas</p>
                                     </div>
                                 </a>
 
-                                <a href="#layanan" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-amber-600 group-hover/item:text-white transition-colors">
+                                <a href="#layanan"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-amber-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="layers" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-amber-600 transition-colors">Katalog Layanan HKI</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Hak Cipta, Paten, Merek & Desain</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-amber-600 transition-colors">
+                                            Katalog Layanan HKI</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Hak Cipta, Paten,
+                                            Merek & Desain</p>
                                     </div>
                                 </a>
 
-                                <a href="#layanan" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-colors">
+                                <a href="#layanan"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="badge-percent" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-emerald-600 transition-colors">Biaya & Tarif Layanan</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Tarif resmi pendaftaran DJKI Kemenkumham</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-emerald-600 transition-colors">
+                                            Biaya & Tarif Layanan</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Tarif resmi
+                                            pendaftaran DJKI Kemenkumham</p>
                                     </div>
                                 </a>
                             </div>
@@ -122,52 +162,76 @@
 
                     <!-- 3. Grup Panduan & Dokumen (Dropdown) -->
                     <div class="relative group">
-                        <button type="button" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 flex items-center gap-1.5 transition-colors focus:outline-none">
+                        <button type="button"
+                            class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 flex items-center gap-1.5 transition-colors focus:outline-none">
                             <span>Panduan & Berkas</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform duration-200 group-hover:rotate-180"></i>
+                            <i data-lucide="chevron-down"
+                                class="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform duration-200 group-hover:rotate-180"></i>
                         </button>
-                        
+
                         <!-- Dropdown Menu -->
-                        <div class="absolute left-0 top-full pt-2 w-72 hidden group-hover:block transition-all duration-200 z-50">
+                        <div
+                            class="absolute left-0 top-full pt-2 w-72 hidden group-hover:block transition-all duration-200 z-50">
                             <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1">
-                                <a href="#alur" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-indigo-600 group-hover/item:text-white transition-colors">
+                                <a href="#alur"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-indigo-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="git-merge" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-indigo-600 transition-colors">Alur &amp; SOP Layanan</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Tahapan usulan hingga terbit sertifikat</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-indigo-600 transition-colors">
+                                            Alur &amp; SOP Layanan</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Tahapan usulan hingga
+                                            terbit sertifikat</p>
                                     </div>
                                 </a>
 
-                                <a href="#dokumen" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-purple-600 group-hover/item:text-white transition-colors">
+                                <a href="#dokumen"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-purple-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="file-down" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-purple-600 transition-colors">Unduh Template Berkas</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Surat pengalihan, formulir &amp; format resmi</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-purple-600 transition-colors">
+                                            Unduh Template Berkas</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Surat pengalihan,
+                                            formulir &amp; format resmi</p>
                                     </div>
                                 </a>
 
-                                <a href="#faq" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
-                                    <div class="w-9 h-9 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-rose-600 group-hover/item:text-white transition-colors">
+                                <a href="#faq"
+                                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group/item">
+                                    <div
+                                        class="w-9 h-9 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-rose-600 group-hover/item:text-white transition-colors">
                                         <i data-lucide="help-circle" class="w-4 h-4"></i>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-bold text-slate-900 group-hover/item:text-rose-600 transition-colors">Tanya Jawab (FAQ)</div>
-                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Pertanyaan seputar pendaftaran HKI</p>
+                                        <div
+                                            class="text-sm font-bold text-slate-900 group-hover/item:text-rose-600 transition-colors">
+                                            Tanya Jawab (FAQ)</div>
+                                        <p class="text-[11px] text-slate-500 leading-tight mt-0.5">Pertanyaan seputar
+                                            pendaftaran HKI</p>
                                     </div>
                                 </a>
 
                                 <div class="pt-1 border-t border-slate-100">
-                                    <a href="{{ route('informasi.index') }}" class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white transition-colors group/item">
-                                        <div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-white/20 group-hover/item:text-white transition-colors">
+                                    <a href="{{ route('informasi.index') }}"
+                                        class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white transition-colors group/item">
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-white/20 group-hover/item:text-white transition-colors">
                                             <i data-lucide="external-link" class="w-4 h-4"></i>
                                         </div>
                                         <div>
-                                            <div class="text-sm font-bold text-slate-900 group-hover/item:text-white transition-colors">Pusat Informasi Lengkap</div>
-                                            <p class="text-[11px] text-slate-500 group-hover/item:text-slate-300 leading-tight mt-0.5">Semua panduan, unduhan &amp; pengumuman</p>
+                                            <div
+                                                class="text-sm font-bold text-slate-900 group-hover/item:text-white transition-colors">
+                                                Pusat Informasi Lengkap</div>
+                                            <p
+                                                class="text-[11px] text-slate-500 group-hover/item:text-slate-300 leading-tight mt-0.5">
+                                                Semua panduan, unduhan &amp; pengumuman</p>
                                         </div>
                                     </a>
                                 </div>
@@ -176,13 +240,15 @@
                     </div>
 
                     <!-- 4. Lacak Permohonan -->
-                    <a href="#lacak" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors flex items-center gap-1.5">
+                    <a href="#lacak"
+                        class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors flex items-center gap-1.5">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
                         <span>Lacak Status</span>
                     </a>
 
                     <!-- 5. Kontak -->
-                    <a href="#kontak" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">
+                    <a href="#kontak"
+                        class="px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-50 transition-colors">
                         Kontak
                     </a>
                 </nav>
@@ -191,8 +257,10 @@
                 <div class="hidden sm:flex items-center gap-2.5 shrink-0">
                     @auth
                         <!-- Jika User Sudah Login -->
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300/80 bg-white hover:bg-slate-50 text-slate-800 font-medium text-sm transition shadow-2xs">
-                            <div class="w-6 h-6 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center font-bold text-[10px]">
+                        <a href="{{ route('dashboard') }}"
+                            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300/80 bg-white hover:bg-slate-50 text-slate-800 font-medium text-sm transition shadow-2xs">
+                            <div
+                                class="w-6 h-6 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center font-bold text-[10px]">
                                 {{ auth()->user()->initials() }}
                             </div>
                             <span class="max-w-[100px] xl:max-w-[140px] truncate font-semibold text-slate-800">
@@ -201,18 +269,21 @@
                             <i data-lucide="layout-dashboard" class="w-3.5 h-3.5 text-slate-400"></i>
                         </a>
 
-                        <a href="{{ route('dosen.ipr.create') }}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md shadow-navy-900/20 hover:bg-navy-800 transition transform hover:-translate-y-0.5">
+                        <a href="{{ route('dosen.ipr.create') }}"
+                            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md shadow-navy-900/20 hover:bg-navy-800 transition transform hover:-translate-y-0.5">
                             <i data-lucide="plus-circle" class="w-4 h-4 text-gold-400"></i>
                             <span>Ajukan HKI</span>
                         </a>
                     @else
                         <!-- Jika Belum Login (Guest) -->
-                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:text-navy-900 hover:bg-slate-50 font-semibold text-sm transition">
+                        <a href="{{ route('login') }}"
+                            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:text-navy-900 hover:bg-slate-50 font-semibold text-sm transition">
                             <i data-lucide="log-in" class="w-4 h-4 text-slate-500"></i>
                             <span>Masuk</span>
                         </a>
 
-                        <button onclick="openModal('pengajuan')" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md shadow-navy-900/20 hover:bg-navy-800 transition transform hover:-translate-y-0.5">
+                        <button onclick="openModal('pengajuan')"
+                            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md shadow-navy-900/20 hover:bg-navy-800 transition transform hover:-translate-y-0.5">
                             <i data-lucide="file-plus" class="w-4 h-4 text-gold-400"></i>
                             <span>Ajukan Usulan</span>
                         </button>
@@ -222,15 +293,18 @@
                 <!-- Mobile Menu Button -->
                 <div class="flex lg:hidden items-center gap-2">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="p-2 rounded-lg text-navy-900 hover:bg-slate-100" title="Dashboard">
+                        <a href="{{ route('dashboard') }}" class="p-2 rounded-lg text-navy-900 hover:bg-slate-100"
+                            title="Dashboard">
                             <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100" title="Masuk">
+                        <a href="{{ route('login') }}" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+                            title="Masuk">
                             <i data-lucide="log-in" class="w-5 h-5"></i>
                         </a>
                     @endauth
-                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <button id="mobile-menu-btn"
+                        class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -238,9 +312,11 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 space-y-3 shadow-lg">
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 space-y-3 shadow-lg">
             <div class="space-y-1">
-                <a href="#beranda" class="block px-3 py-2 rounded-xl text-sm font-semibold text-navy-900 hover:bg-slate-50">
+                <a href="#beranda"
+                    class="block px-3 py-2 rounded-xl text-sm font-semibold text-navy-900 hover:bg-slate-50">
                     Beranda
                 </a>
 
@@ -248,15 +324,18 @@
                 <div class="pt-2">
                     <p class="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Profil & Layanan</p>
                     <div class="mt-1 space-y-0.5 pl-2">
-                        <a href="#tentang" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#tentang"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="info" class="w-3.5 h-3.5 text-blue-500"></i>
                             <span>Tentang Sentra HKI</span>
                         </a>
-                        <a href="#layanan" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#layanan"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="layers" class="w-3.5 h-3.5 text-amber-500"></i>
                             <span>Katalog Layanan HKI</span>
                         </a>
-                        <a href="#layanan" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#layanan"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="badge-percent" class="w-3.5 h-3.5 text-emerald-500"></i>
                             <span>Biaya & Tarif Layanan</span>
                         </a>
@@ -267,15 +346,18 @@
                 <div class="pt-2">
                     <p class="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Panduan & Dokumen</p>
                     <div class="mt-1 space-y-0.5 pl-2">
-                        <a href="#alur" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#alur"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="git-merge" class="w-3.5 h-3.5 text-indigo-500"></i>
                             <span>Alur & SOP Layanan</span>
                         </a>
-                        <a href="#dokumen" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#dokumen"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="file-down" class="w-3.5 h-3.5 text-purple-500"></i>
                             <span>Unduh Template Berkas</span>
                         </a>
-                        <a href="#faq" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        <a href="#faq"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i data-lucide="help-circle" class="w-3.5 h-3.5 text-rose-500"></i>
                             <span>Tanya Jawab (FAQ)</span>
                         </a>
@@ -283,11 +365,13 @@
                 </div>
 
                 <div class="pt-2 space-y-1">
-                    <a href="#lacak" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+                    <a href="#lacak"
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
                         <span>Lacak Permohonan</span>
                     </a>
-                    <a href="#kontak" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+                    <a href="#kontak"
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
                         <i data-lucide="phone" class="w-4 h-4 text-slate-400"></i>
                         <span>Kontak LPPM</span>
                     </a>
@@ -297,20 +381,24 @@
             <!-- Mobile Action Buttons -->
             <div class="pt-3 border-t border-slate-100 space-y-2">
                 @auth
-                    <a href="{{ route('dashboard') }}" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-sm">
+                    <a href="{{ route('dashboard') }}"
+                        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-sm">
                         <i data-lucide="layout-dashboard" class="w-4 h-4 text-navy-800"></i>
                         <span>Dashboard ({{ auth()->user()->name }})</span>
                     </a>
-                    <a href="{{ route('dosen.ipr.create') }}" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md">
+                    <a href="{{ route('dosen.ipr.create') }}"
+                        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md">
                         <i data-lucide="plus-circle" class="w-4 h-4 text-gold-400"></i>
                         <span>Ajukan HKI Sekarang</span>
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-sm">
+                    <a href="{{ route('login') }}"
+                        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-sm">
                         <i data-lucide="log-in" class="w-4 h-4 text-slate-500"></i>
                         <span>Masuk Portal Dosen / Verifikator</span>
                     </a>
-                    <button onclick="openModal('pengajuan')" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md">
+                    <button onclick="openModal('pengajuan')"
+                        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-900 text-white font-semibold text-sm shadow-md">
                         <i data-lucide="file-plus" class="w-4 h-4 text-gold-400"></i>
                         <span>Ajukan Usulan Cepat</span>
                     </button>
@@ -320,7 +408,8 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="beranda" class="relative overflow-hidden bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 text-white py-20 lg:py-28">
+    <section id="beranda"
+        class="relative overflow-hidden bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 text-white py-20 lg:py-28">
         <!-- Background Glow Elements -->
         <div class="absolute inset-0 opacity-15 pointer-events-none">
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-gold-500 rounded-full blur-3xl"></div>
@@ -331,29 +420,37 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Left Content -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 text-gold-400 text-sm font-medium backdrop-blur">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 text-gold-400 text-sm font-medium backdrop-blur">
                         <i data-lucide="award" class="w-4 h-4"></i>
                         Pusat Layanan Resmi Hak Kekayaan Intelektual Universitas
                     </div>
                     <h1 class="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
-                        Lindungi Inovasi, <br>Karya, & Riset <span class="text-gold-500 underline decoration-gold-500/50 decoration-wavy">Intelektual</span>
+                        Lindungi Inovasi, <br>Karya, & Riset <span
+                            class="text-gold-500 underline decoration-gold-500/50 decoration-wavy">Intelektual</span>
                     </h1>
-                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                        Sentra HKI Universitas Panca Sakti Bekasi siap mendampingi sivitas akademika dan masyarakat umum dalam pengurusan Hak Cipta, Paten, Merek, dan Desain Industri secara cepat, legal, dan profesional.
+                    <p
+                        class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Sentra HKI Universitas Panca Sakti Bekasi siap mendampingi sivitas akademika dan masyarakat umum
+                        dalam pengurusan Hak Cipta, Paten, Merek, dan Desain Industri secara cepat, legal, dan
+                        profesional.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                         @auth
-                            <a href="{{ route('dosen.ipr.create') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base shadow-xl shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+                            <a href="{{ route('dosen.ipr.create') }}"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base shadow-xl shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
                                 <i data-lucide="arrow-right-circle" class="w-5 h-5"></i>
                                 Mulai Pengajuan HKI
                             </a>
                         @else
-                            <button onclick="openModal('pengajuan')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base shadow-xl shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+                            <button onclick="openModal('pengajuan')"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-base shadow-xl shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
                                 <i data-lucide="arrow-right-circle" class="w-5 h-5"></i>
                                 Mulai Pengajuan HKI
                             </button>
                         @endauth
-                        <a href="#alur" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-base border border-white/20 backdrop-blur transition-all">
+                        <a href="#alur"
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-base border border-white/20 backdrop-blur transition-all">
                             <i data-lucide="book-open" class="w-5 h-5 text-gold-400"></i>
                             Unduh Panduan SOP
                         </a>
@@ -361,16 +458,23 @@
 
                     <!-- Quick Search / Status Tracker -->
                     <div id="lacak" class="pt-6 max-w-xl mx-auto lg:mx-0 scroll-mt-24">
-                        <div class="bg-white/10 p-3 rounded-2xl border border-white/10 backdrop-blur flex items-center gap-2">
+                        <div
+                            class="bg-white/10 p-3 rounded-2xl border border-white/10 backdrop-blur flex items-center gap-2">
                             <div class="flex-1 flex items-center gap-2 px-3 bg-white/5 rounded-xl">
                                 <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
-                                <input type="text" id="search-code" onkeydown="if(event.key==='Enter') checkStatus()" placeholder="Cek No. Permohonan (Cth: EC00202512345)..." class="w-full bg-transparent py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none">
+                                <input type="text" id="search-code"
+                                    onkeydown="if(event.key==='Enter') checkStatus()"
+                                    placeholder="Cek No. Permohonan (Cth: EC00202512345)..."
+                                    class="w-full bg-transparent py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none">
                             </div>
-                            <button id="btn-search-status" onclick="checkStatus()" class="px-5 py-2.5 bg-navy-800 hover:bg-navy-700 text-white font-medium text-sm rounded-xl transition-colors shrink-0 flex items-center gap-2">
+                            <button id="btn-search-status" onclick="checkStatus()"
+                                class="px-5 py-2.5 bg-navy-800 hover:bg-navy-700 text-white font-medium text-sm rounded-xl transition-colors shrink-0 flex items-center gap-2">
                                 <span>Cek Status</span>
                             </button>
                         </div>
-                        <div id="search-result" class="text-sm text-white mt-3 hidden bg-slate-900/95 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md shadow-2xl transition-all"></div>
+                        <div id="search-result"
+                            class="text-sm text-white mt-3 hidden bg-slate-900/95 p-4 rounded-2xl border border-slate-700/80 backdrop-blur-md shadow-2xl transition-all">
+                        </div>
                     </div>
                 </div>
 
@@ -378,13 +482,17 @@
                 <div class="lg:col-span-5 relative">
                     <div class="relative mx-auto max-w-md lg:max-w-none">
                         <!-- Decorative box glow -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-gold-500 to-blue-600 rounded-3xl blur-2xl opacity-20 transform rotate-3"></div>
-                        
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-gold-500 to-blue-600 rounded-3xl blur-2xl opacity-20 transform rotate-3">
+                        </div>
+
                         <!-- Main Card -->
-                        <div class="relative bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
+                        <div
+                            class="relative bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
                             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500">
                                         <i data-lucide="award" class="w-5 h-5"></i>
                                     </div>
                                     <div>
@@ -392,43 +500,52 @@
                                         <p class="text-sm text-slate-400">Sertifikasi Resmi Ditjen HKI</p>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold border border-emerald-500/20">Aktif 2026</span>
+                                <span
+                                    class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-semibold border border-emerald-500/20">Aktif
+                                    2026</span>
                             </div>
 
                             <div class="space-y-4">
-                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                <div
+                                    class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
                                     <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 shrink-0">
                                         <i data-lucide="book" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <h4 class="text-sm font-semibold text-white">Hak Cipta (Copyright)</h4>
-                                        <p class="text-sm text-slate-400 mt-0.5">Buku, Penelitian, Program Komputer, Karya Seni & Musik.</p>
+                                        <p class="text-sm text-slate-400 mt-0.5">Buku, Penelitian, Program Komputer,
+                                            Karya Seni & Musik.</p>
                                     </div>
                                 </div>
 
-                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                <div
+                                    class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
                                     <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
                                         <i data-lucide="cpu" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <h4 class="text-sm font-semibold text-white">Paten & Paten Sederhana</h4>
-                                        <p class="text-sm text-slate-400 mt-0.5">Inovasi teknologi, alat peraga, dan proses industri.</p>
+                                        <p class="text-sm text-slate-400 mt-0.5">Inovasi teknologi, alat peraga, dan
+                                            proses industri.</p>
                                     </div>
                                 </div>
 
-                                <div class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                                <div
+                                    class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
                                     <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
                                         <i data-lucide="tag" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <h4 class="text-sm font-semibold text-white">Merek Dagang & Jasa</h4>
-                                        <p class="text-sm text-slate-400 mt-0.5">Logo produk, brand usaha mahasiswa & startup kampus.</p>
+                                        <p class="text-sm text-slate-400 mt-0.5">Logo produk, brand usaha mahasiswa &
+                                            startup kampus.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="pt-2">
-                                <a href="#layanan" class="block w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-sm font-medium text-white transition-colors">
+                                <a href="#layanan"
+                                    class="block w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-center text-sm font-medium text-white transition-colors">
                                     Lihat Semua Kategori Layanan &rarr;
                                 </a>
                             </div>
@@ -441,7 +558,8 @@
 
     <!-- Statistik Singkat (Stat Bar) -->
     <section class="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/80 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+        <div
+            class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/80 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
             <div class="text-center px-4 py-2">
                 <div class="inline-flex p-3 rounded-2xl bg-blue-50 text-blue-600 mb-3">
                     <i data-lucide="book-open-check" class="w-6 h-6"></i>
@@ -483,7 +601,8 @@
     <section id="tentang" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-6 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-sm font-semibold">
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-sm font-semibold">
                     <i data-lucide="info" class="w-4 h-4 text-gold-600"></i>
                     Tentang Sentra HKI
                 </div>
@@ -491,7 +610,10 @@
                     Mendorong Budaya Inovasi & Pelindungan Hukum Kampus
                 </h2>
                 <p class="text-slate-600 leading-relaxed">
-                    Sentra Kekayaan Intelektual (HKI) Universitas Panca Sakti Bekasi adalah unit layanan resmi di bawah Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) yang bertugas memberikan edukasi, pendampingan, serta fasilitasi pendaftaran Hak Kekayaan Intelektual bagi seluruh sivitas akademika dan masyarakat luas.
+                    Sentra Kekayaan Intelektual (HKI) Universitas Panca Sakti Bekasi adalah unit layanan resmi di bawah
+                    Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) yang bertugas memberikan edukasi,
+                    pendampingan, serta fasilitasi pendaftaran Hak Kekayaan Intelektual bagi seluruh sivitas akademika
+                    dan masyarakat luas.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div class="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
@@ -519,20 +641,25 @@
                     <div class="absolute inset-0 bg-gold-500/10 rounded-3xl transform rotate-3"></div>
                     <div class="relative bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl font-bold font-heading">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl font-bold font-heading">
                                 20
                             </div>
                             <div>
                                 <h3 class="font-bold text-lg text-navy-900">Tahun Dedikasi Inovasi</h3>
-                                <p class="text-sm text-slate-500">Melayani ratusan riset dan hak cipta dosen & mahasiswa.</p>
+                                <p class="text-sm text-slate-500">Melayani ratusan riset dan hak cipta dosen &
+                                    mahasiswa.</p>
                             </div>
                         </div>
                         <blockquote class="text-slate-600 text-sm italic border-l-4 border-gold-500 pl-4 py-1">
-                            "Perlindungan kekayaan intelektual bukan sekadar legalitas hukum, tetapi bentuk penghargaan tertinggi terhadap kreativitas dan karya anak bangsa."
+                            "Perlindungan kekayaan intelektual bukan sekadar legalitas hukum, tetapi bentuk penghargaan
+                            tertinggi terhadap kreativitas dan karya anak bangsa."
                         </blockquote>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 text-sm text-slate-500 font-medium">
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-slate-100 text-sm text-slate-500 font-medium">
                             <span>{{ app_setting('head_sentra_title', 'Ketua Sentra HKI Universitas') }}</span>
-                            <span class="text-navy-900 font-bold">{{ app_setting('head_sentra_name', 'Dr. H. Ahmad Fauzi, M.T.') }}</span>
+                            <span
+                                class="text-navy-900 font-bold">{{ app_setting('head_sentra_name', 'Dr. H. Ahmad Fauzi, M.T.') }}</span>
                         </div>
                     </div>
                 </div>
@@ -551,24 +678,29 @@
                     Pilih Layanan HKI yang Anda Butuhkan
                 </h2>
                 <p class="text-slate-600 text-sm sm:text-base">
-                    Kami melayani berbagai jenis pendaftaran Kekayaan Intelektual dengan panduan persyaratan yang jelas dan mudah.
+                    Kami melayani berbagai jenis pendaftaran Kekayaan Intelektual dengan panduan persyaratan yang jelas
+                    dan mudah.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1: Hak Cipta -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div
+                    class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
                             <i data-lucide="book-open" class="w-7 h-7"></i>
                         </div>
                         <h3 class="font-heading font-bold text-xl text-navy-900">Hak Cipta</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">
-                            Perlindungan untuk karya tulis, buku, modul ajar, program komputer, seni rupa, musik, video, dan riset ilmiah.
+                            Perlindungan untuk karya tulis, buku, modul ajar, program komputer, seni rupa, musik, video,
+                            dan riset ilmiah.
                         </p>
                     </div>
                     <div class="pt-6 mt-6 border-t border-slate-100">
-                        <button onclick="openModal('hak-cipta')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                        <button onclick="openModal('hak-cipta')"
+                            class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
                             <span>Panduan & Syarat</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -576,18 +708,22 @@
                 </div>
 
                 <!-- Card 2: Paten -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div
+                    class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
                             <i data-lucide="cpu" class="w-7 h-7"></i>
                         </div>
                         <h3 class="font-heading font-bold text-xl text-navy-900">Paten & Sederhana</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">
-                            Perlindungan invensi di bidang teknologi, mesin, alat tepat guna, maupun pembaharuan proses produksi industri.
+                            Perlindungan invensi di bidang teknologi, mesin, alat tepat guna, maupun pembaharuan proses
+                            produksi industri.
                         </p>
                     </div>
                     <div class="pt-6 mt-6 border-t border-slate-100">
-                        <button onclick="openModal('paten')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                        <button onclick="openModal('paten')"
+                            class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
                             <span>Panduan & Syarat</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -595,18 +731,22 @@
                 </div>
 
                 <!-- Card 3: Merek -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div
+                    class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
                             <i data-lucide="tag" class="w-7 h-7"></i>
                         </div>
                         <h3 class="font-heading font-bold text-xl text-navy-900">Merek Dagang</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">
-                            Pendaftaran logo, nama produk, brand usaha kuliner, fashion, maupun jasa binaan inkubator bisnis universitas.
+                            Pendaftaran logo, nama produk, brand usaha kuliner, fashion, maupun jasa binaan inkubator
+                            bisnis universitas.
                         </p>
                     </div>
                     <div class="pt-6 mt-6 border-t border-slate-100">
-                        <button onclick="openModal('merek')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                        <button onclick="openModal('merek')"
+                            class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
                             <span>Panduan & Syarat</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -614,18 +754,22 @@
                 </div>
 
                 <!-- Card 4: Desain Industri -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div
+                    class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-navy-900 group-hover:text-gold-500 transition-colors">
                             <i data-lucide="layout" class="w-7 h-7"></i>
                         </div>
                         <h3 class="font-heading font-bold text-xl text-navy-900">Desain Industri</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">
-                            Kreasi bentuk, konfigurasi, atau komposisi garis dan warna pada suatu produk kerajinan atau manufaktur.
+                            Kreasi bentuk, konfigurasi, atau komposisi garis dan warna pada suatu produk kerajinan atau
+                            manufaktur.
                         </p>
                     </div>
                     <div class="pt-6 mt-6 border-t border-slate-100">
-                        <button onclick="openModal('desain')" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
+                        <button onclick="openModal('desain')"
+                            class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-50 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold text-sm transition-colors">
                             <span>Panduan & Syarat</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -651,9 +795,11 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
             @forelse($alurs as $index => $step)
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition flex flex-col justify-between group">
+                <div
+                    class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition flex flex-col justify-between group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 rounded-2xl {{ $index === 0 ? 'bg-gold-500 text-navy-950 shadow-gold-500/30' : ($index === 3 ? 'bg-emerald-600 text-white shadow-emerald-600/30' : 'bg-navy-900 text-white') }} font-bold font-heading text-lg flex items-center justify-center shadow-md">
+                        <div
+                            class="w-12 h-12 rounded-2xl {{ $index === 0 ? 'bg-gold-500 text-navy-950 shadow-gold-500/30' : ($index === 3 ? 'bg-emerald-600 text-white shadow-emerald-600/30' : 'bg-navy-900 text-white') }} font-bold font-heading text-lg flex items-center justify-center shadow-md">
                             {{ sprintf('%02d', $step->order ?: $index + 1) }}
                         </div>
                         <h3 class="font-heading font-bold text-lg text-navy-900">{{ $step->title }}</h3>
@@ -661,9 +807,10 @@
                             {{ $step->description }}
                         </p>
                     </div>
-                    @if($step->content)
+                    @if ($step->content)
                         <div class="pt-2">
-                            <a href="{{ route('informasi.show', $step->slug) }}" class="text-sm font-semibold text-blue-600 hover:underline inline-flex items-center gap-1">
+                            <a href="{{ route('informasi.show', $step->slug) }}"
+                                class="text-sm font-semibold text-blue-600 hover:underline inline-flex items-center gap-1">
                                 <span>Rincian Syarat</span>
                                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                             </a>
@@ -672,46 +819,58 @@
                 </div>
             @empty
                 <!-- Step 1 -->
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
-                    <div class="w-12 h-12 rounded-2xl bg-gold-500 text-navy-950 font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-gold-500/30">
+                <div
+                    class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-gold-500 text-navy-950 font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-gold-500/30">
                         01
                     </div>
                     <h3 class="font-heading font-bold text-lg text-navy-900">Konsultasi & Dokumen</h3>
                     <p class="text-slate-500 text-sm leading-relaxed">
-                        Pemohon menyiapkan draf karya/ciptaan dan berkas administratif pendukung (KTP, Surat Pernyataan Keaslian).
+                        Pemohon menyiapkan draf karya/ciptaan dan berkas administratif pendukung (KTP, Surat Pernyataan
+                        Keaslian).
                     </p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
-                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
+                <div
+                    class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
                         02
                     </div>
                     <h3 class="font-heading font-bold text-lg text-navy-900">Unggah ke Sistem</h3>
                     <p class="text-slate-500 text-sm leading-relaxed">
-                        Mengisi formulir pengajuan online melalui portal Sentra HKI universitas dan melampirkan berkas scan asli.
+                        Mengisi formulir pengajuan online melalui portal Sentra HKI universitas dan melampirkan berkas
+                        scan asli.
                     </p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
-                    <div class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
+                <div
+                    class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-navy-900 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md">
                         03
                     </div>
                     <h3 class="font-heading font-bold text-lg text-navy-900">Verifikasi & Review</h3>
                     <p class="text-slate-500 text-sm leading-relaxed">
-                        Tim ahli Sentra HKI melakukan pemeriksaan kelayakan dokumen sebelum diajukan resmi ke DJKI Kementerian.
+                        Tim ahli Sentra HKI melakukan pemeriksaan kelayakan dokumen sebelum diajukan resmi ke DJKI
+                        Kementerian.
                     </p>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-emerald-600/30">
+                <div
+                    class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm relative space-y-4 hover:border-gold-500/50 transition">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-bold font-heading text-lg flex items-center justify-center shadow-md shadow-emerald-600/30">
                         04
                     </div>
                     <h3 class="font-heading font-bold text-lg text-navy-900">Terbit Sertifikat</h3>
                     <p class="text-slate-500 text-sm leading-relaxed">
-                        Sertifikat HKI resmi diterbitkan oleh DJKI dan dapat diunduh atau diambil langsung di kantor Sentra HKI.
+                        Sertifikat HKI resmi diterbitkan oleh DJKI dan dapat diunduh atau diambil langsung di kantor
+                        Sentra HKI.
                     </p>
                 </div>
             @endforelse
@@ -729,20 +888,24 @@
                     <h2 class="font-heading font-bold text-3xl sm:text-4xl mt-3 text-white tracking-tight">
                         Template &amp; Dokumen Penting
                     </h2>
-                    <p class="text-slate-400 text-sm mt-2">Unduh format surat pernyataan dan panduan resmi pendaftaran HKI.</p>
+                    <p class="text-slate-400 text-sm mt-2">Unduh format surat pernyataan dan panduan resmi pendaftaran
+                        HKI.</p>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="{{ route('informasi.index', ['kategori' => 'template_dokumen']) }}" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-all">
+                    <a href="{{ route('informasi.index', ['kategori' => 'template_dokumen']) }}"
+                        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-all">
                         <i data-lucide="folder" class="w-4 h-4 text-gold-400"></i>
                         <span>Semua Dokumen</span>
                     </a>
                     @auth
-                        <a href="{{ route('dosen.ipr.create') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm transition-all">
+                        <a href="{{ route('dosen.ipr.create') }}"
+                            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm transition-all">
                             <i data-lucide="plus-circle" class="w-4 h-4"></i>
                             Ajukan Permohonan Baru
                         </a>
                     @else
-                        <button onclick="openModal('pengajuan')" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm transition-all">
+                        <button onclick="openModal('pengajuan')"
+                            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-sm transition-all">
                             <i data-lucide="plus-circle" class="w-4 h-4"></i>
                             Ajukan Permohonan Baru
                         </button>
@@ -752,22 +915,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @forelse($templates as $doc)
-                    <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
+                    <div
+                        class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
                         <div class="flex items-center gap-4">
                             <div class="p-3.5 rounded-2xl bg-blue-500/10 text-gold-400">
                                 <i data-lucide="file-text" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-base text-white">{{ $doc->title }}</h4>
-                                <p class="text-sm text-slate-400 mt-0.5">Format {{ $doc->file_type ?? 'DOCX' }} • {{ $doc->file_size ?? 'Resmi LPPM' }}</p>
+                                <p class="text-sm text-slate-400 mt-0.5">Format {{ $doc->file_type ?? 'DOCX' }} •
+                                    {{ $doc->file_size ?? 'Resmi LPPM' }}</p>
                             </div>
                         </div>
-                        <a href="{{ route('informasi.unduh', $doc->slug) }}" onclick="downloadFile('{{ addslashes($doc->title) }}')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center shrink-0 ml-2" title="Unduh Berkas {{ $doc->file_type ?? 'Dokumen' }}">
+                        <a href="{{ route('informasi.unduh', $doc->slug) }}"
+                            onclick="downloadFile('{{ addslashes($doc->title) }}')"
+                            class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center shrink-0 ml-2"
+                            title="Unduh Berkas {{ $doc->file_type ?? 'Dokumen' }}">
                             <i data-lucide="download" class="w-5 h-5"></i>
                         </a>
                     </div>
                 @empty
-                    <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
+                    <div
+                        class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
                         <div class="flex items-center gap-4">
                             <div class="p-3.5 rounded-2xl bg-blue-500/10 text-blue-400">
                                 <i data-lucide="file-text" class="w-6 h-6"></i>
@@ -777,12 +946,16 @@
                                 <p class="text-sm text-slate-400 mt-0.5">Format DOCX • 245 KB</p>
                             </div>
                         </div>
-                        <a href="{{ route('dokumen.unduh', 'surat-pernyataan-hak-cipta') }}" onclick="downloadFile('Surat Pernyataan Hak Cipta')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center" title="Unduh Berkas DOCX">
+                        <a href="{{ route('dokumen.unduh', 'surat-pernyataan-hak-cipta') }}"
+                            onclick="downloadFile('Surat Pernyataan Hak Cipta')"
+                            class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center"
+                            title="Unduh Berkas DOCX">
                             <i data-lucide="download" class="w-5 h-5"></i>
                         </a>
                     </div>
 
-                    <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
+                    <div
+                        class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
                         <div class="flex items-center gap-4">
                             <div class="p-3.5 rounded-2xl bg-amber-500/10 text-amber-400">
                                 <i data-lucide="file-text" class="w-6 h-6"></i>
@@ -792,12 +965,16 @@
                                 <p class="text-sm text-slate-400 mt-0.5">Format PDF • Resmi LPPM</p>
                             </div>
                         </div>
-                        <a href="{{ route('dokumen.unduh', 'panduan-pengajuan-paten') }}" onclick="downloadFile('Panduan Pengajuan Paten')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center" title="Unduh Berkas PDF">
+                        <a href="{{ route('dokumen.unduh', 'panduan-pengajuan-paten') }}"
+                            onclick="downloadFile('Panduan Pengajuan Paten')"
+                            class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center"
+                            title="Unduh Berkas PDF">
                             <i data-lucide="download" class="w-5 h-5"></i>
                         </a>
                     </div>
 
-                    <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
+                    <div
+                        class="bg-slate-800/80 border border-slate-700 p-6 rounded-3xl flex items-center justify-between hover:border-slate-500 transition">
                         <div class="flex items-center gap-4">
                             <div class="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-400">
                                 <i data-lucide="file-text" class="w-6 h-6"></i>
@@ -807,7 +984,10 @@
                                 <p class="text-sm text-slate-400 mt-0.5">Format DOCX • Resmi LPPM</p>
                             </div>
                         </div>
-                        <a href="{{ route('dokumen.unduh', 'formulir-pendaftaran-merek') }}" onclick="downloadFile('Formulir Pendaftaran Merek')" class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center" title="Unduh Berkas DOCX">
+                        <a href="{{ route('dokumen.unduh', 'formulir-pendaftaran-merek') }}"
+                            onclick="downloadFile('Formulir Pendaftaran Merek')"
+                            class="p-3 rounded-xl bg-slate-700 hover:bg-gold-500 hover:text-navy-950 text-white transition-colors flex items-center justify-center"
+                            title="Unduh Berkas DOCX">
                             <i data-lucide="download" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -833,7 +1013,8 @@
         <div class="space-y-4">
             @forelse($faqs as $faq)
                 <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
-                    <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <summary
+                        class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
                         <span>{{ $faq->title }}</span>
                         <span class="transition group-open:rotate-180">
                             <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
@@ -841,7 +1022,7 @@
                     </summary>
                     <div class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed space-y-2">
                         <p>{{ $faq->description ?: $faq->content }}</p>
-                        @if($faq->content && $faq->description && $faq->content !== $faq->description)
+                        @if ($faq->content && $faq->description && $faq->content !== $faq->description)
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-slate-700 text-sm">
                                 {!! nl2br(e($faq->content)) !!}
                             </div>
@@ -850,45 +1031,52 @@
                 </details>
             @empty
                 <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
-                    <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <summary
+                        class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
                         <span>Berapa lama proses penerbitan sertifikat Hak Cipta?</span>
                         <span class="transition group-open:rotate-180">
                             <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
                         </span>
                     </summary>
                     <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
-                        Untuk Hak Cipta melalui jalur kampus dan verifikasi DJKI biasanya memakan waktu sekitar 3 s.d. 7 hari kerja setelah berkas dinyatakan lengkap dan valid.
+                        Pengajuan Hak Cipta melalui jalur kampus dan verifikasi DJKI memakan waktu sekitar 7 -14 hari
+                        kerja setelah berkas dinyatakan lengkap dan valid.
                     </p>
                 </details>
 
                 <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
-                    <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <summary
+                        class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
                         <span>Apakah mahasiswa bisa mendaftarkan Hak Cipta tugas akhir/skripsi?</span>
                         <span class="transition group-open:rotate-180">
                             <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
                         </span>
                     </summary>
                     <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
-                        Sangat bisa! Mahasiswa Universitas Panca Sakti Bekasi sangat didorong untuk mendaftarkan tugas akhir, skripsi, atau program komputer ciptaannya dengan pendampingan dari Sentra HKI.
+                        Sangat bisa! Mahasiswa Universitas Panca Sakti Bekasi sangat didorong untuk mendaftarkan tugas
+                        akhir, skripsi, atau program komputer ciptaannya dengan pendampingan dari Sentra HKI.
                     </p>
                 </details>
 
                 <details class="group bg-white p-6 rounded-2xl border border-slate-200 shadow-sm cursor-pointer">
-                    <summary class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
+                    <summary
+                        class="flex justify-between items-center font-heading font-semibold text-navy-900 text-base list-none">
                         <span>Berapakah biaya pendaftaran melalui Sentra HKI Universitas?</span>
                         <span class="transition group-open:rotate-180">
                             <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i>
                         </span>
                     </summary>
                     <p class="text-slate-600 text-sm mt-3 pt-3 border-t border-slate-100 leading-relaxed">
-                        Biaya PNBP (Penerimaan Negara Bukan Pajak) disesuaikan dengan tarif resmi DJKI. Untuk sivitas akademika universitas, tersedia tarif khusus dan fasilitasi bantuan subsidi dari LPPM.
+                        Biaya PNBP (Penerimaan Negara Bukan Pajak) disesuaikan dengan tarif resmi DJKI. Untuk sivitas
+                        akademika universitas, tersedia tarif khusus dan fasilitasi bantuan subsidi dari LPPM.
                     </p>
                 </details>
             @endforelse
         </div>
 
         <div class="mt-8 text-center">
-            <a href="{{ route('informasi.index', ['kategori' => 'faq']) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-navy-900 hover:text-blue-700 transition">
+            <a href="{{ route('informasi.index', ['kategori' => 'faq']) }}"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-navy-900 hover:text-blue-700 transition">
                 <span>Punya Pertanyaan Lain? Lihat Pusat Informasi &amp; FAQ Lengkap &rarr;</span>
             </a>
         </div>
@@ -896,20 +1084,29 @@
 
     <!-- Footer -->
     <footer id="kontak" class="bg-navy-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
             <div class="space-y-4 md:col-span-1">
                 <div class="flex items-center gap-3">
-                    <img src="{{ app_setting_logo('logo') }}" alt="Logo {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}" class="h-11 w-11 object-contain drop-shadow-sm shrink-0">
+                    <img src="{{ app_setting_logo('logo') }}"
+                        alt="Logo {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}"
+                        class="h-11 w-11 object-contain drop-shadow-sm shrink-0">
                     <div>
-                        <span class="block font-heading font-bold text-lg text-white leading-tight">{{ app_setting('app_name', 'Sentra HKI') }}</span>
-                        <span class="block text-sm text-slate-400">{{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</span>
+                        <span
+                            class="block font-heading font-bold text-lg text-white leading-tight">{{ app_setting('app_name', 'Sentra HKI') }}</span>
+                        <span
+                            class="block text-sm text-slate-400">{{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}</span>
                     </div>
                 </div>
                 <p class="text-sm leading-relaxed text-slate-400">
-                    Pusat Layanan {{ app_setting('sentra_hki_name', 'Hak Kekayaan Intelektual') }} {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}. {{ app_setting('app_tagline', 'Melindungi karya, mewujudkan inovasi mandiri.') }}
+                    Pusat Layanan {{ app_setting('sentra_hki_name', 'Hak Kekayaan Intelektual') }}
+                    {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}.
+                    {{ app_setting('app_tagline', 'Melindungi karya, mewujudkan inovasi mandiri.') }}
                 </p>
                 <div class="pt-2">
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', app_setting('institution_phone', '6281234567890')) }}?text=Halo%20{{ urlencode(app_setting('app_name', 'Sentra HKI')) }},%20saya%20ingin%20konsultasi" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-sm font-semibold hover:bg-emerald-600 hover:text-white transition">
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', app_setting('institution_phone', '6281234567890')) }}?text=Halo%20{{ urlencode(app_setting('app_name', 'Sentra HKI')) }},%20saya%20ingin%20konsultasi"
+                        target="_blank"
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-sm font-semibold hover:bg-emerald-600 hover:text-white transition">
                         <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
                         Chat WhatsApp Helpdesk
                     </a>
@@ -923,17 +1120,22 @@
                     <li><a href="#tentang" class="hover:text-gold-400 transition-colors">Tentang Kami</a></li>
                     <li><a href="#layanan" class="hover:text-gold-400 transition-colors">Layanan HKI</a></li>
                     <li><a href="#alur" class="hover:text-gold-400 transition-colors">Panduan & SOP</a></li>
-                    <li><a href="{{ route('login') }}" class="hover:text-gold-400 transition-colors">Login Portal Dosen</a></li>
+                    <li><a href="{{ route('login') }}" class="hover:text-gold-400 transition-colors">Login Portal
+                            Dosen</a></li>
                 </ul>
             </div>
 
             <div class="space-y-3">
                 <h4 class="font-heading font-semibold text-white text-sm">Layanan Utama</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#layanan" onclick="openModal('hak-cipta')" class="hover:text-gold-400 transition-colors">Pendaftaran Hak Cipta</a></li>
-                    <li><a href="#layanan" onclick="openModal('paten')" class="hover:text-gold-400 transition-colors">Paten & Paten Sederhana</a></li>
-                    <li><a href="#layanan" onclick="openModal('merek')" class="hover:text-gold-400 transition-colors">Merek Dagang & Jasa</a></li>
-                    <li><a href="#layanan" onclick="openModal('desain')" class="hover:text-gold-400 transition-colors">Desain Industri</a></li>
+                    <li><a href="#layanan" onclick="openModal('hak-cipta')"
+                            class="hover:text-gold-400 transition-colors">Pendaftaran Hak Cipta</a></li>
+                    <li><a href="#layanan" onclick="openModal('paten')"
+                            class="hover:text-gold-400 transition-colors">Paten & Paten Sederhana</a></li>
+                    <li><a href="#layanan" onclick="openModal('merek')"
+                            class="hover:text-gold-400 transition-colors">Merek Dagang & Jasa</a></li>
+                    <li><a href="#layanan" onclick="openModal('desain')"
+                            class="hover:text-gold-400 transition-colors">Desain Industri</a></li>
                 </ul>
             </div>
 
@@ -948,16 +1150,24 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
-            <p>&copy; {{ date('Y') }} {{ app_setting('app_name', 'Sentra HKI') }} {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}. All rights reserved.</p>
-            <p class="mt-2 sm:mt-0">{{ app_setting('app_full_name', 'Sistem Informasi Manajemen Publikasi & Sentra Kekayaan Intelektual') }}</p>
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
+            <p>&copy; {{ date('Y') }} {{ app_setting('app_name', 'Sentra HKI') }}
+                {{ app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi') }}. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0">
+                {{ app_setting('app_full_name', 'Sistem Informasi Manajemen Publikasi & Sentra Kekayaan Intelektual') }}
+            </p>
         </div>
     </footer>
 
     <!-- Modal Dialog Interaktif -->
-    <div id="app-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform transition-all animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
+    <div id="app-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden p-4"
+        role="dialog" aria-modal="true" aria-label="Dialog Sentra HAKI" tabindex="-1">
+        <div
+            class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform transition-all animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()"
+                class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             <div id="modal-content" class="space-y-4">
@@ -967,7 +1177,8 @@
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-navy-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-navy-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
         <i data-lucide="check-circle-2" class="w-5 h-5 text-gold-500"></i>
         <span id="toast-message" class="text-sm font-medium">Notifikasi berhasil</span>
     </div>
@@ -1006,8 +1217,8 @@
             const codeInput = document.getElementById('search-code');
             const resultEl = document.getElementById('search-result');
             const code = codeInput.value.trim();
-            
-            if(!code) {
+
+            if (!code) {
                 showToast('Masukkan nomor permohonan atau kode usulan!');
                 codeInput.focus();
                 return;
@@ -1028,7 +1239,7 @@
                 const response = await fetch(`{{ route('tracking.status') }}?code=${encodeURIComponent(code)}`);
                 const json = await response.json();
 
-                if(!response.ok || !json.success) {
+                if (!response.ok || !json.success) {
                     resultEl.innerHTML = `
                         <div class="space-y-2 text-rose-300">
                             <div class="flex items-center gap-2 font-semibold text-rose-400">
@@ -1048,18 +1259,30 @@
                 window.currentTrackedData = d;
 
                 // Step Progress Indicator
-                const steps = [
-                    { num: 1, title: 'Draf Dokumen' },
-                    { num: 2, title: 'Verifikasi LPPM' },
-                    { num: 3, title: 'Proses DJKI' },
-                    { num: 4, title: 'Sertifikat Terbit' }
+                const steps = [{
+                        num: 1,
+                        title: 'Draf Dokumen'
+                    },
+                    {
+                        num: 2,
+                        title: 'Verifikasi LPPM'
+                    },
+                    {
+                        num: 3,
+                        title: 'Proses DJKI'
+                    },
+                    {
+                        num: 4,
+                        title: 'Sertifikat Terbit'
+                    }
                 ];
 
                 let stepHtml = '<div class="grid grid-cols-4 gap-2 pt-3 pb-1 border-t border-slate-800">';
                 steps.forEach(st => {
                     const isCompleted = d.current_step >= st.num;
                     const isCurrent = d.current_step === st.num;
-                    const stepBg = isCompleted ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/50' : 'bg-slate-800 text-slate-400 border border-slate-700';
+                    const stepBg = isCompleted ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/50' :
+                        'bg-slate-800 text-slate-400 border border-slate-700';
                     const titleColor = isCompleted ? 'text-emerald-400 font-semibold' : 'text-slate-400';
                     stepHtml += `
                         <div class="text-center">
@@ -1103,10 +1326,10 @@
                         </div>
 
                         ${d.verification_note ? `
-                            <div class="text-[11px] bg-blue-950/60 p-2.5 rounded-lg border border-blue-900 text-blue-200">
-                                <strong>Catatan Verifikator LPPM:</strong> ${escapeHtml(d.verification_note)}
-                            </div>
-                        ` : ''}
+                                <div class="text-[11px] bg-blue-950/60 p-2.5 rounded-lg border border-blue-900 text-blue-200">
+                                    <strong>Catatan Verifikator LPPM:</strong> ${escapeHtml(d.verification_note)}
+                                </div>
+                            ` : ''}
 
                         ${stepHtml}
 
@@ -1121,7 +1344,7 @@
 
                 lucide.createIcons();
                 showToast('Status permohonan #' + d.tracking_code + ' berhasil dimuat!');
-            } catch(err) {
+            } catch (err) {
                 console.error(err);
                 resultEl.innerHTML = `
                     <div class="text-rose-400 text-sm py-1">
@@ -1141,8 +1364,8 @@
         function openModal(type) {
             const modal = document.getElementById('app-modal');
             const content = document.getElementById('modal-content');
-            
-            if(type === 'pengajuan') {
+
+            if (type === 'pengajuan') {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center gap-3">
@@ -1180,7 +1403,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-700 mb-1">No. WhatsApp</label>
-                                    <input type="tel" name="phone" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-900" placeholder="081234567890" value="{{ auth()->check() ? (auth()->user()->phone ?? '') : '' }}">
+                                    <input type="tel" name="phone" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-navy-900" placeholder="081234567890" value="{{ auth()->check() ? auth()->user()->phone ?? '' : '' }}">
                                 </div>
                             </div>
                             <div>
@@ -1208,7 +1431,7 @@
                         </form>
                     </div>
                 `;
-            } else if(type === 'hak-cipta') {
+            } else if (type === 'hak-cipta') {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="p-3 rounded-xl bg-blue-50 text-blue-600 w-fit">
@@ -1228,7 +1451,7 @@
                         </div>
                     </div>
                 `;
-            } else if(type === 'paten') {
+            } else if (type === 'paten') {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="p-3 rounded-xl bg-amber-50 text-amber-600 w-fit">
@@ -1248,7 +1471,7 @@
                         </div>
                     </div>
                 `;
-            } else if(type === 'merek') {
+            } else if (type === 'merek') {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 w-fit">
@@ -1268,7 +1491,7 @@
                         </div>
                     </div>
                 `;
-            } else if(type === 'desain') {
+            } else if (type === 'desain') {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="p-3 rounded-xl bg-purple-50 text-purple-600 w-fit">
@@ -1287,7 +1510,7 @@
                         </div>
                     </div>
                 `;
-            } else if(type === 'detail-tracking' && window.currentTrackedData) {
+            } else if (type === 'detail-tracking' && window.currentTrackedData) {
                 const d = window.currentTrackedData;
                 content.innerHTML = `
                     <div class="space-y-4">
@@ -1351,11 +1574,11 @@
                                 </div>
                             </div>
                             ${d.verification_note ? `
-                                <div class="pt-2 border-t border-slate-200">
-                                    <span class="text-slate-500 block">Catatan Verifikator LPPM:</span>
-                                    <p class="text-slate-700 italic mt-0.5 bg-white p-2 rounded-lg border border-slate-200">${escapeHtml(d.verification_note)}</p>
-                                </div>
-                            ` : ''}
+                                    <div class="pt-2 border-t border-slate-200">
+                                        <span class="text-slate-500 block">Catatan Verifikator LPPM:</span>
+                                        <p class="text-slate-700 italic mt-0.5 bg-white p-2 rounded-lg border border-slate-200">${escapeHtml(d.verification_note)}</p>
+                                    </div>
+                                ` : ''}
                         </div>
 
                         <div class="flex gap-3 pt-2">
@@ -1376,7 +1599,7 @@
         // Close on clicking outside modal
         window.addEventListener('click', (e) => {
             const modal = document.getElementById('app-modal');
-            if(e.target === modal) {
+            if (e.target === modal) {
                 closeModal();
             }
         });
@@ -1389,7 +1612,7 @@
             const content = document.getElementById('modal-content');
 
             if (errEl) errEl.classList.add('hidden');
-            
+
             // Disable button & show spinner
             const originalBtnText = btnSubmit ? btnSubmit.innerHTML : 'Kirim Permohonan Usulan';
             if (btnSubmit) {
@@ -1531,4 +1754,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -43,14 +43,14 @@ Route::get('/informasi/{slug}', [PublicInformationController::class, 'show'])->n
 Route::get('/informasi/{slug}/unduh', [PublicInformationController::class, 'download'])->name('informasi.unduh');
 
 // Pelacakan Status HKI Real-Time Publik
-Route::get('/tracking/status', [TrackingController::class, 'track'])->name('tracking.status');
-Route::post('/tracking/status', [TrackingController::class, 'track'])->name('tracking.status.post');
+Route::get('/tracking/status', [TrackingController::class, 'track'])->middleware('throttle:20,1')->name('tracking.status');
+Route::post('/tracking/status', [TrackingController::class, 'track'])->middleware('throttle:20,1')->name('tracking.status.post');
 
 // Pusat Unduh Dokumen & Template Resmi (Kompatibilitas Tautan Lama)
 Route::get('/dokumen/unduh/{slug}', [PublicInformationController::class, 'download'])->name('dokumen.unduh');
 
 // Pengajuan Permohonan Cepat HKI Publik
-Route::post('/permohonan/ajukan', [PublicSubmissionController::class, 'submit'])->name('permohonan.ajukan');
+Route::post('/permohonan/ajukan', [PublicSubmissionController::class, 'submit'])->middleware('throttle:5,1')->name('permohonan.ajukan');
 
 // Guest Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -98,11 +98,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/haki/{intellectualProperty}/file/{type}', [IntellectualPropertyController::class, 'downloadFile'])->name('ipr.file');
 
         // Pengajuan Insentif Dosen
-        Route::get('/insentif', [IncentiveController::class, 'dosenIndex'])->name('incentives.index');
-        Route::get('/insentif/tambah', [IncentiveController::class, 'dosenCreate'])->name('incentives.create');
-        Route::post('/insentif', [IncentiveController::class, 'dosenStore'])->name('incentives.store');
-        Route::get('/insentif/{incentiveRequest}', [IncentiveController::class, 'dosenShow'])->name('incentives.show');
-        Route::get('/insentif/{incentiveRequest}/file/{type}', [IncentiveController::class, 'downloadFile'])->name('incentives.file');
+        Route::middleware('incentive.enabled')->group(function () {
+            Route::get('/insentif', [IncentiveController::class, 'dosenIndex'])->name('incentives.index');
+            Route::get('/insentif/tambah', [IncentiveController::class, 'dosenCreate'])->name('incentives.create');
+            Route::post('/insentif', [IncentiveController::class, 'dosenStore'])->name('incentives.store');
+            Route::get('/insentif/{incentiveRequest}', [IncentiveController::class, 'dosenShow'])->name('incentives.show');
+            Route::get('/insentif/{incentiveRequest}/file/{type}', [IncentiveController::class, 'downloadFile'])->name('incentives.file');
+        });
 
         Route::get('/profil', fn () => redirect()->route('profile.edit'))->name('profile');
     });
@@ -124,12 +126,16 @@ Route::middleware('auth')->group(function () {
 
         // Riwayat & Log
         Route::get('/riwayat', [VerificationController::class, 'logsIndex'])->name('logs');
+        Route::get('/riwayat/download', [VerificationController::class, 'logsDownload'])->name('logs.download');
+        Route::delete('/riwayat', [VerificationController::class, 'logsDestroy'])
+            ->middleware('role:admin_lppm')
+            ->name('logs.destroy');
     });
 
     // Modul Admin Sentra HKI & LPPM
     Route::prefix('admin')->name('admin.')->middleware('role:admin_lppm,verifikator')->group(function () {
         // Financial records and bank details are restricted to Admin LPPM.
-        Route::middleware('role:admin_lppm')->group(function () {
+        Route::middleware(['role:admin_lppm', 'incentive.enabled'])->group(function () {
             Route::get('/insentif', [IncentiveController::class, 'adminIndex'])->name('incentives.index');
             Route::get('/insentif/{incentiveRequest}', [IncentiveController::class, 'adminShow'])->name('incentives.show');
             Route::post('/insentif/{incentiveRequest}/process', [IncentiveController::class, 'adminProcess'])->name('incentives.process');
@@ -143,7 +149,11 @@ Route::middleware('auth')->group(function () {
             Route::put('/master-data/skema/{scheme}', [MasterDataController::class, 'updateScheme'])->name('master.scheme.update');
             Route::delete('/master-data/skema/{scheme}', [MasterDataController::class, 'destroyScheme'])->name('master.scheme.destroy');
             Route::post('/master-data/fakultas', [MasterDataController::class, 'storeFaculty'])->name('master.faculty.store');
+            Route::put('/master-data/fakultas/{faculty}', [MasterDataController::class, 'updateFaculty'])->name('master.faculty.update');
+            Route::delete('/master-data/fakultas/{faculty}', [MasterDataController::class, 'destroyFaculty'])->name('master.faculty.destroy');
             Route::post('/master-data/prodi', [MasterDataController::class, 'storeDepartment'])->name('master.department.store');
+            Route::put('/master-data/prodi/{department}', [MasterDataController::class, 'updateDepartment'])->name('master.department.update');
+            Route::delete('/master-data/prodi/{department}', [MasterDataController::class, 'destroyDepartment'])->name('master.department.destroy');
 
             Route::get('/dosen', [LecturerManagementController::class, 'index'])->name('lecturers.index');
             Route::post('/dosen', [LecturerManagementController::class, 'store'])->name('lecturers.store');
@@ -166,6 +176,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('pengaturan')->name('settings.')->middleware('role:admin_lppm')->group(function () {
             Route::get('/', [AppSettingController::class, 'index'])->name('index');
             Route::post('/', [AppSettingController::class, 'update'])->name('update');
+            Route::post('/bersihkan-cache', [AppSettingController::class, 'clearCache'])->name('clear-cache');
             Route::post('/reset/{type}', [AppSettingController::class, 'resetFile'])->name('reset-file');
         });
     });

@@ -15,42 +15,16 @@ class TrackingController extends Controller
     {
         $code = trim($request->input('code', ''));
 
-        if (empty($code)) {
+        if (strlen($code) < 6 || strlen($code) > 100) {
             return response()->json([
                 'success' => false,
                 'message' => 'Silakan masukkan nomor permohonan atau kode usulan HKI.',
             ], 422);
         }
 
-        // Support formats like:
-        // 1. EC00202512345 (application_number)
-        // 2. 000789123 (registration_number)
-        // 3. HKI-1 / HKI-001 or numeric ID
-        $cleanId = null;
-        if (preg_match('/^hki[-_]?0*([1-9]\d*)$/i', $code, $matches)) {
-            $cleanId = (int) $matches[1];
-        } elseif (ctype_digit($code)) {
-            $cleanId = (int) $code;
-        }
-
-        $query = IntellectualProperty::with(['inventors', 'user']);
-
-        $ipr = $query->where(function ($q) use ($code, $cleanId) {
-            $q->where('application_number', $code)
-              ->orWhere('registration_number', $code);
-
-            if ($cleanId) {
-                $q->orWhere('id', $cleanId);
-            }
+        $ipr = IntellectualProperty::query()->where(function ($q) use ($code) {
+            $q->where('application_number', $code)->orWhere('registration_number', $code);
         })->first();
-
-        // Fallback: case-insensitive or partial match on application / registration number
-        if (!$ipr) {
-            $ipr = IntellectualProperty::with(['inventors', 'user'])
-                ->where('application_number', 'LIKE', '%' . $code . '%')
-                ->orWhere('registration_number', 'LIKE', '%' . $code . '%')
-                ->first();
-        }
 
         if (!$ipr) {
             return response()->json([
@@ -120,11 +94,6 @@ class TrackingController extends Controller
         }
 
         // Format inventors
-        $inventorNames = $ipr->inventors->pluck('inventor_name')->filter()->values()->all();
-        if (empty($inventorNames) && $ipr->user) {
-            $inventorNames = [$ipr->user->name];
-        }
-
         return response()->json([
             'success' => true,
             'data' => [
@@ -141,13 +110,11 @@ class TrackingController extends Controller
                 'rights_holder' => $ipr->rights_holder,
                 'verification_status' => $ipr->verification_status,
                 'verification_status_label' => $verificationLabels[$ipr->verification_status] ?? ucfirst($ipr->verification_status),
-                'verification_note' => $ipr->verification_note ?: null,
                 'djki_status' => $ipr->djki_status,
                 'djki_status_label' => $djkiLabels[$ipr->djki_status] ?? ucfirst($ipr->djki_status),
                 'status_summary' => $statusSummary,
                 'badge_class' => $badgeClass,
                 'current_step' => $currentStep,
-                'inventors' => $inventorNames,
                 'has_certificate' => !empty($ipr->certificate_file),
                 'created_at' => $ipr->created_at ? $ipr->created_at->format('d/m/Y') : '-',
             ],

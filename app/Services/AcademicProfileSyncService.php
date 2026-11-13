@@ -141,10 +141,10 @@ class AcademicProfileSyncService
         $iprs = $lecturer->intellectualProperties()->where('verification_status', 'approved')->get();
         foreach ($iprs as $ipr) {
             $score = match ($ipr->ipr_type) {
-                'patent' => 50,
-                'simple_patent' => 30,
-                'industrial_design' => 20,
-                'copyright' => 15,
+                'paten' => 50,
+                'paten_sederhana' => 30,
+                'desain_industri' => 20,
+                'hak_cipta' => 15,
                 default => 10,
             };
 
@@ -153,12 +153,6 @@ class AcademicProfileSyncService
             if ($year >= $threeYearsAgo) {
                 $threeYearScore += $score;
             }
-        }
-
-        // Berikan baseline skor jika dosen sudah punya ID SINTA valid (agar tidak 0 mutlak)
-        if ($overallScore === 0) {
-            $overallScore = 45;
-            $threeYearScore = 25;
         }
 
         return [

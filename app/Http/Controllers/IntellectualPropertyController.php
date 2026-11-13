@@ -78,7 +78,7 @@ class IntellectualPropertyController extends Controller
             'application_date' => ['nullable', 'date'],
             'registration_number' => ['nullable', 'string', 'max:100'],
             'grant_date' => ['nullable', 'date'],
-            'djki_status' => ['required', 'string', 'max:50'],
+            'djki_status' => ['nullable', 'string', 'in:draft,diajukan,pemeriksaan,granted,ditolak'],
             'rights_holder' => ['required', 'string', 'max:255'],
             'certificate' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
             'description_file' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
@@ -117,7 +117,7 @@ class IntellectualPropertyController extends Controller
             'application_date' => $validated['application_date'] ?? null,
             'registration_number' => $validated['registration_number'] ?? null,
             'grant_date' => $validated['grant_date'] ?? null,
-            'djki_status' => $validated['djki_status'],
+            'djki_status' => 'draft',
             'rights_holder' => $validated['rights_holder'],
             'certificate_file' => $certificatePath,
             'description_file' => $descriptionPath,
@@ -204,6 +204,10 @@ class IntellectualPropertyController extends Controller
     {
         $user = Auth::user();
 
+        if ($intellectualProperty->verification_status === 'approved' && !$user->isAdminLppm()) {
+            abort(403, 'Data HKI yang sudah disetujui tidak dapat diubah.');
+        }
+
         if ($user->isDosen() && $intellectualProperty->user_id !== $user->id) {
             abort(403);
         }
@@ -216,7 +220,7 @@ class IntellectualPropertyController extends Controller
             'application_date' => ['nullable', 'date'],
             'registration_number' => ['nullable', 'string', 'max:100'],
             'grant_date' => ['nullable', 'date'],
-            'djki_status' => ['required', 'string', 'max:50'],
+            'djki_status' => ['nullable', 'string', 'in:draft,diajukan,pemeriksaan,granted,ditolak'],
             'rights_holder' => ['required', 'string', 'max:255'],
             'certificate' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
             'description_file' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
@@ -253,7 +257,9 @@ class IntellectualPropertyController extends Controller
             'application_date' => $validated['application_date'] ?? null,
             'registration_number' => $validated['registration_number'] ?? null,
             'grant_date' => $validated['grant_date'] ?? null,
-            'djki_status' => $validated['djki_status'],
+            'djki_status' => $user->isAdminLppm()
+                ? ($validated['djki_status'] ?? $intellectualProperty->djki_status)
+                : $intellectualProperty->djki_status,
             'rights_holder' => $validated['rights_holder'],
             'verification_status' => $statusAfter,
         ]);

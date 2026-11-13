@@ -100,6 +100,8 @@ class AdminFeaturesTest extends TestCase
 
     public function test_admin_incentives_action_button_disabled_when_completed(): void
     {
+        \App\Models\AppSetting::set('feature_incentive_enabled', '1', 'features', 'boolean');
+
         $admin = User::where('role', 'admin_lppm')->first();
         $lecturer = Lecturer::first();
         $scheme = IncentiveScheme::first();

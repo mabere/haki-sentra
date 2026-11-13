@@ -289,6 +289,10 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
 
+        if ($publication->verification_status === 'approved' && !$user->isAdminLppm()) {
+            abort(403, 'Publikasi yang sudah disetujui tidak dapat diubah.');
+        }
+
         if ($user->isDosen() && $publication->user_id !== $user->id) {
             abort(403);
         }

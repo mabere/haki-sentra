@@ -6,17 +6,34 @@ use App\Models\AppSetting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\View\View;
 
 class AppSettingController extends Controller
 {
+    /** Clear Laravel's application and optimization caches. */
+    public function clearCache(): RedirectResponse
+    {
+        try {
+            Artisan::call('optimize:clear');
+        } catch (\Throwable $exception) {
+            report($exception);
+
+            return redirect()->route('admin.settings.index')
+                ->withErrors(['cache' => 'Cache aplikasi gagal dibersihkan. Silakan coba lagi atau hubungi pengelola hosting.']);
+        }
+
+        return redirect()->route('admin.settings.index')
+            ->with('success', 'Cache aplikasi berhasil dibersihkan.');
+    }
+
     /**
      * Display the application and institution settings dashboard.
      */
     public function index(Request $request): View
     {
         $activeTab = $request->query('tab', 'branding');
-        if (!in_array($activeTab, ['branding', 'institution', 'leader', 'organization'])) {
+        if (!in_array($activeTab, ['branding', 'institution', 'leader', 'organization', 'features'])) {
             $activeTab = 'branding';
         }
 
@@ -35,7 +52,7 @@ class AppSettingController extends Controller
             'app_name' => ['required', 'string', 'max:100'],
             'app_full_name' => ['nullable', 'string', 'max:255'],
             'app_tagline' => ['nullable', 'string', 'max:255'],
-            'app_logo' => ['nullable', 'image', 'mimes:png,jpg,jpeg,svg,webp', 'max:2048'],
+            'app_logo' => ['nullable', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2048'],
             'app_favicon' => ['nullable', 'file', 'mimes:ico,png,svg', 'max:1024'],
 
             // Institution
@@ -62,6 +79,9 @@ class AppSettingController extends Controller
             'head_sentra_name' => ['nullable', 'string', 'max:150'],
             'head_sentra_nidn' => ['nullable', 'string', 'max:50'],
             'head_sentra_title' => ['nullable', 'string', 'max:200'],
+
+            // Features
+            'feature_incentive_enabled' => ['nullable', 'boolean'],
         ], [
             'app_name.required' => 'Nama singkat aplikasi wajib diisi.',
             'institution_name.required' => 'Nama institusi / perguruan tinggi wajib diisi.',
@@ -71,7 +91,7 @@ class AppSettingController extends Controller
             'sentra_hki_name.required' => 'Nama unit sentra HKI wajib diisi.',
             'head_lppm_name.required' => 'Nama Kepala LPPM wajib diisi.',
             'head_lppm_title.required' => 'Sebutan jabatan Kepala LPPM wajib diisi.',
-            'app_logo.image' => 'File logo harus berupa gambar (PNG, JPG, SVG, WebP).',
+            'app_logo.image' => 'File logo harus berupa gambar PNG, JPG, atau WebP.',
             'app_logo.max' => 'Ukuran file logo maksimal 2 MB.',
             'app_favicon.max' => 'Ukuran file favicon maksimal 1 MB.',
             'head_lppm_signature.image' => 'File tanda tangan/stempel harus berupa gambar (PNG direkomendasikan).',
@@ -141,6 +161,14 @@ class AppSettingController extends Controller
                 AppSetting::set($key, $request->input($key), $meta['group'], $meta['type'], $meta['label']);
             }
         }
+
+        AppSetting::set(
+            'feature_incentive_enabled',
+            $request->boolean('feature_incentive_enabled') ? '1' : '0',
+            'features',
+            'boolean',
+            'Aktifkan Modul Insentif Publikasi & HKI'
+        );
 
         AppSetting::clearCache();
 

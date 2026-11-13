@@ -67,7 +67,7 @@ class PublicInformationController extends Controller
     {
         DocumentTemplateService::ensureTemplatesExist();
 
-        $info = Information::where('slug', $slug)->first();
+        $info = Information::where('slug', $slug)->where('is_active', true)->first();
 
         // 1. Cek dari database
         if ($info && $info->file_path && Storage::disk('public')->exists($info->file_path)) {

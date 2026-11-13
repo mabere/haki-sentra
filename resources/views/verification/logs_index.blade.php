@@ -3,10 +3,70 @@
 @section('content')
 <div class="space-y-6">
 
-    <div>
-        <h1 class="text-xl font-bold text-slate-900">Riwayat Log & Audit Trail Verifikasi</h1>
-        <p class="text-sm text-slate-500">Catatan riwayat persetujuan, permintaan revisi, dan penolakan oleh tim verifikator LPPM.</p>
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+            <h1 class="text-xl font-bold text-slate-900">Riwayat Log &amp; Audit Trail Verifikasi</h1>
+            <p class="text-sm text-slate-500">Catatan riwayat persetujuan, permintaan revisi, dan penolakan oleh tim verifikator LPPM.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+            <!-- Download TXT -->
+            <a href="{{ route('verification.logs.download', request()->only('q')) }}"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 text-sm font-semibold shadow-2xs transition">
+                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Download (.txt)</span>
+            </a>
+
+            <!-- Hapus Log (Khusus Admin LPPM) -->
+            @if(auth()->user()->isAdminLppm() && $logs->total() > 0)
+            <form method="POST" action="{{ route('verification.logs.destroy') }}"
+                onsubmit="return confirm('Apakah Anda yakin ingin menghapus catatan log verifikasi sesuai rentang yang dipilih? Tindakan ini tidak dapat dibatalkan.');"
+                class="inline-flex items-center gap-2 bg-rose-50/70 border border-rose-200 rounded-xl p-1">
+                @csrf
+                @method('DELETE')
+                <select name="older_than" aria-label="Pilih rentang log yang dihapus"
+                    class="bg-white border border-rose-200 rounded-lg px-2.5 py-1.5 text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    <option value="30">&gt; 30 Hari</option>
+                    <option value="90">&gt; 90 Hari</option>
+                    <option value="365">&gt; 1 Tahun</option>
+                    <option value="all">Semua Log</option>
+                </select>
+                <button type="submit"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold transition cursor-pointer">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    <span>Hapus Log</span>
+                </button>
+            </form>
+            @endif
+        </div>
     </div>
+
+    <!-- Filter Pencarian Catatan -->
+    <form method="GET" action="{{ route('verification.logs') }}" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+        <div class="relative flex-1 max-w-md">
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari catatan log verifikasi..."
+                class="w-full pl-9 pr-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </div>
+        <button type="submit"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold transition cursor-pointer">
+            Cari
+        </button>
+        @if(request()->filled('q'))
+            <a href="{{ route('verification.logs') }}"
+                class="px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold text-center transition">
+                Reset
+            </a>
+        @endif
+    </form>
 
     <!-- Log Table -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">

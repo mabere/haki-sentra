@@ -35,6 +35,13 @@ class PublicSubmissionController extends Controller
             'title.required' => 'Judul ciptaan / inovasi wajib diisi.',
         ]);
 
+        if (!auth()->check() && User::where('email', strtolower(trim($validated['email'])))->exists()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email sudah terdaftar. Silakan masuk sebelum mengajukan permohonan.',
+            ], 422);
+        }
+
         return DB::transaction(function () use ($validated) {
             // Find or associate user
             if (auth()->check()) {

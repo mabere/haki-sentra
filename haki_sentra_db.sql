@@ -85,8 +85,6 @@ CREATE TABLE `cache` (
 -- Dumping data for table `cache`
 --
 
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-app_settings_cached_all', 'a:24:{s:8:\"app_name\";s:10:\"SIM-HKIPUB\";s:13:\"app_full_name\";s:66:\"Sistem Informasi Manajemen Kekayaan Intelektual & Publikasi Ilmiah\";s:11:\"app_tagline\";s:44:\"Melindungi Karya, Mewujudkan Inovasi Mandiri\";s:8:\"app_logo\";N;s:11:\"app_favicon\";N;s:16:\"institution_name\";s:23:\"Universitas Panca Sakti\";s:22:\"institution_legal_name\";s:30:\"Universitas Panca Sakti Bekasi\";s:22:\"institution_short_name\";s:10:\"UPS Bekasi\";s:16:\"institution_city\";s:6:\"Bekasi\";s:19:\"institution_address\";s:60:\"Jl. Raya Hankam No. 54, Pondok Gede, Kota Bekasi, Jawa Barat\";s:23:\"institution_postal_code\";s:5:\"17414\";s:17:\"institution_phone\";s:14:\"(021) 84978888\";s:17:\"institution_email\";s:22:\"lppm@panca-sakti.ac.id\";s:19:\"institution_website\";s:25:\"https://panca-sakti.ac.id\";s:9:\"lppm_name\";s:58:\"Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM)\";s:15:\"sentra_hki_name\";s:40:\"Sentra Kekayaan Intelektual (Sentra HKI)\";s:13:\"lppm_building\";s:59:\"Gedung LPPM Lantai 2, Kampus Universitas Panca Sakti Bekasi\";s:14:\"head_lppm_name\";s:24:\"Dr. H. Ahmad Fauzi, M.T.\";s:14:\"head_lppm_nidn\";s:10:\"0412057801\";s:15:\"head_lppm_title\";s:64:\"Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM)\";s:19:\"head_lppm_signature\";N;s:16:\"head_sentra_name\";s:24:\"Dr. H. Ahmad Fauzi, M.T.\";s:16:\"head_sentra_nidn\";s:10:\"0412057801\";s:17:\"head_sentra_title\";s:28:\"Ketua Sentra HKI Universitas\";}', 2109901225);
 
 -- --------------------------------------------------------
 
@@ -468,8 +466,6 @@ CREATE TABLE `sessions` (
 -- Dumping data for table `sessions`
 --
 
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('oeuJ7NPBsahUsOyDIKuLScE2QKuiADd2WlkW6rjO', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:160.0) Gecko/20100101 Firefox/160.0', 'eyJfdG9rZW4iOiJodkhucG1CTlFsVlNRNEdEZmlSN2FZV0tyTlg0cHBSdWlaZXdGeEVrIiwiX2ZsYXNoIjp7Im5ldyI6W10sIm9sZCI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cHM6XC9cL2FwbGlrYXNpLWhha2kudGVzdFwvbG9naW4iLCJyb3V0ZSI6ImxvZ2luIn19', 1794541239);
 
 -- --------------------------------------------------------
 

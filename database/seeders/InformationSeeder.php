@@ -125,7 +125,8 @@ class InformationSeeder extends Seeder
                 'badge_text' => 'Estimasi Waktu',
                 'icon' => 'help-circle',
                 'description' => 'Estimasi waktu pemrosesan penerbitan sertifikat Hak Cipta di DJKI.',
-                'content' => 'Untuk Hak Cipta melalui jalur kampus dan verifikasi DJKI biasanya memakan waktu sekitar 3 s.d. 7 hari kerja setelah berkas dinyatakan lengkap dan valid oleh Sentra HKI LPPM.',
+                'content' => 'Pengajuan Hak Cipta melalui jalur kampus dan verifikasi DJKI memakan waktu sekitar 7 -14 hari
+                kerja setelah berkas dinyatakan lengkap dan valid.',
                 'order' => 1,
                 'is_active' => true,
                 'created_by' => $adminId,

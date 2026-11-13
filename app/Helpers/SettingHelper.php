@@ -35,3 +35,15 @@ if (!function_exists('app_setting_signature')) {
         return AppSetting::getSignatureUrl();
     }
 }
+
+if (!function_exists('incentive_enabled')) {
+    /**
+     * Check whether the incentive module is enabled (defaults to false / nonaktif).
+     */
+    function incentive_enabled(): bool
+    {
+        $value = AppSetting::get('feature_incentive_enabled', '0');
+
+        return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+    }
+}

@@ -64,7 +64,7 @@ class RevisionCommentController extends Controller
                 ? number_format($sizeInBytes / 1048576, 1) . ' MB' 
                 : number_format($sizeInBytes / 1024, 0) . ' KB';
 
-            $attachmentPath = $file->store('revision_attachments', 'public');
+            $attachmentPath = $file->store('revision_attachments', 'private');
         }
 
         // Create comment
@@ -150,13 +150,11 @@ class RevisionCommentController extends Controller
             abort(403, 'Anda tidak memiliki hak akses untuk mengunduh lampiran revisi ini.');
         }
 
-        if (!$comment->attachment_path || !Storage::disk('public')->exists($comment->attachment_path)) {
+        if (!$comment->attachment_path || !Storage::disk('private')->exists($comment->attachment_path)) {
             abort(404, 'Berkas lampiran tidak ditemukan di server penyimpanan.');
         }
 
-        $filePath = Storage::disk('public')->path($comment->attachment_path);
         $fileName = $comment->attachment_name ?: basename($comment->attachment_path);
-
-        return response()->download($filePath, $fileName);
+        return Storage::disk('private')->download($comment->attachment_path, $fileName);
     }
 }

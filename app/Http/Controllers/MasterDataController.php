@@ -14,7 +14,8 @@ class MasterDataController extends Controller
      */
     public function index(Request $request)
     {
-        $tab = $request->input('tab', 'schemes');
+        $incentiveEnabled = incentive_enabled();
+        $tab = $incentiveEnabled ? $request->input('tab', 'schemes') : 'faculties';
 
         $schemes = IncentiveScheme::orderBy('category')->orderBy('name')->get();
         $faculties = Faculty::with('departments')->orderBy('name')->get();
@@ -108,6 +109,38 @@ class MasterDataController extends Controller
     }
 
     /**
+     * Update existing faculty.
+     */
+    public function updateFaculty(Request $request, Faculty $faculty)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'code' => ['required', 'string', 'max:20', 'unique:faculties,code,' . $faculty->id],
+        ]);
+
+        $faculty->update($validated);
+
+        return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+            ->with('success', 'Data fakultas berhasil diperbarui.');
+    }
+
+    /**
+     * Delete a faculty.
+     */
+    public function destroyFaculty(Faculty $faculty)
+    {
+        if ($faculty->departments()->exists()) {
+            return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+                ->withErrors(['error' => 'Fakultas tidak dapat dihapus karena masih memiliki program studi terkait.']);
+        }
+
+        $faculty->delete();
+
+        return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+            ->with('success', 'Fakultas berhasil dihapus.');
+    }
+
+    /**
      * Store new department / prodi.
      */
     public function storeDepartment(Request $request)
@@ -122,5 +155,38 @@ class MasterDataController extends Controller
 
         return redirect()->route('admin.master.index', ['tab' => 'faculties'])
             ->with('success', 'Program studi baru berhasil ditambahkan.');
+    }
+
+    /**
+     * Update existing department / prodi.
+     */
+    public function updateDepartment(Request $request, Department $department)
+    {
+        $validated = $request->validate([
+            'faculty_id' => ['required', 'exists:faculties,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'code' => ['required', 'string', 'max:20', 'unique:departments,code,' . $department->id],
+        ]);
+
+        $department->update($validated);
+
+        return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+            ->with('success', 'Data program studi berhasil diperbarui.');
+    }
+
+    /**
+     * Delete a department / prodi.
+     */
+    public function destroyDepartment(Department $department)
+    {
+        if ($department->lecturers()->exists()) {
+            return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+                ->withErrors(['error' => 'Program studi tidak dapat dihapus karena masih memiliki data dosen terkait.']);
+        }
+
+        $department->delete();
+
+        return redirect()->route('admin.master.index', ['tab' => 'faculties'])
+            ->with('success', 'Program studi berhasil dihapus.');
     }
 }

@@ -52,7 +52,7 @@ class AcademicProfileSyncTest extends TestCase
 
         $lecturer->refresh();
         $this->assertNotNull($lecturer->last_synced_at);
-        $this->assertGreaterThan(0, $lecturer->sinta_score_overall);
+        $this->assertSame(0, $lecturer->sinta_score_overall);
         $this->assertGreaterThan(0, $lecturer->google_scholar_citations);
     }
 

@@ -262,5 +262,88 @@ class VerificationController extends Controller
 
         return view('verification.logs_index', compact('logs'));
     }
+
+    /**
+     * Download verification logs audit trail as a plain text (.txt) file.
+     */
+    public function logsDownload(Request $request)
+    {
+        $query = VerificationLog::with(['reviewer', 'verifiable'])->latest('id');
+
+        if ($request->filled('q')) {
+            $search = $request->input('q');
+            $query->where('notes', 'like', "%{$search}%");
+        }
+
+        $filename = 'log-verifikasi-' . now()->format('Y-m-d_H-i-s') . '.txt';
+        $institution = app_setting('institution_legal_name', 'Universitas Panca Sakti Bekasi');
+        $totalCount = (clone $query)->count();
+        $filterNote = $request->filled('q') ? $request->input('q') : '-';
+
+        return response()->streamDownload(function () use ($query, $institution, $totalCount, $filterNote) {
+            echo "========================================================================\n";
+            echo "LOG RIWAYAT & AUDIT TRAIL VERIFIKASI - {$institution}\n";
+            echo "Diekspor pada : " . now()->format('d/m/Y H:i:s') . "\n";
+            echo "Filter Catatan: {$filterNote}\n";
+            echo "Total Catatan : {$totalCount}\n";
+            echo "========================================================================\n\n";
+
+            if ($totalCount === 0) {
+                echo "Belum ada riwayat aktivitas verifikasi yang tercatat.\n";
+                return;
+            }
+
+            $no = 1;
+            foreach ($query->lazy(500) as $log) {
+                $type = match ($log->verifiable_type) {
+                    Publication::class => 'Publikasi',
+                    IntellectualProperty::class => 'HKI',
+                    default => 'Insentif',
+                };
+                $title = $log->verifiable ? ($log->verifiable->title ?? 'Pengajuan #' . $log->verifiable_id) : 'Objek telah dihapus';
+                $actor = $log->reviewer ? $log->reviewer->name : 'Sistem';
+                $time = $log->created_at ? $log->created_at->format('d/m/Y H:i:s') : '-';
+                $notes = $log->notes ?: '-';
+
+                echo "[{$no}] {$time} | {$type} | {$title}\n";
+                echo "    Aktor  : {$actor}\n";
+                echo "    Status : {$log->status_before} -> {$log->status_after}\n";
+                echo "    Catatan: {$notes}\n";
+                echo "------------------------------------------------------------------------\n";
+                $no++;
+            }
+        }, $filename, [
+            'Content-Type' => 'text/plain; charset=utf-8',
+        ]);
+    }
+
+    /**
+     * Delete verification logs (all or older than selected days).
+     */
+    public function logsDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'older_than' => ['required', 'in:all,30,90,365'],
+        ]);
+
+        $query = VerificationLog::query();
+        $scopeLabel = 'semua';
+
+        if ($validated['older_than'] !== 'all') {
+            $days = (int) $validated['older_than'];
+            $query->where('created_at', '<', now()->subDays($days));
+            $scopeLabel = "lebih dari {$days} hari";
+        }
+
+        $deletedCount = $query->delete();
+
+        if ($deletedCount === 0) {
+            return redirect()->route('verification.logs')
+                ->with('info', "Tidak ada log verifikasi ({$scopeLabel}) yang perlu dihapus.");
+        }
+
+        return redirect()->route('verification.logs')
+            ->with('success', "Berhasil menghapus {$deletedCount} catatan log verifikasi ({$scopeLabel}).");
+    }
 }
 

@@ -33,7 +33,9 @@ class DashboardController extends Controller
             $myIprCount = IntellectualProperty::where('user_id', $user->id)->count();
             $myIprApproved = IntellectualProperty::where('user_id', $user->id)->where('verification_status', 'approved')->count();
 
-            $myIncentives = $lecturer ? IncentiveRequest::where('lecturer_id', $lecturer->id)->get() : collect();
+            $myIncentives = incentive_enabled() && $lecturer
+                ? IncentiveRequest::where('lecturer_id', $lecturer->id)->get()
+                : collect();
             $totalIncentiveDisbursed = $myIncentives->where('status', 'disbursed')->sum('approved_amount');
 
             $stats = [
@@ -57,7 +59,7 @@ class DashboardController extends Controller
                 ->take(5)
                 ->get();
 
-            $recentIncentives = $lecturer ? IncentiveRequest::where('lecturer_id', $lecturer->id)
+            $recentIncentives = incentive_enabled() && $lecturer ? IncentiveRequest::where('lecturer_id', $lecturer->id)
                 ->with(['scheme', 'claimable'])
                 ->latest()
                 ->take(5)
@@ -94,8 +96,8 @@ class DashboardController extends Controller
             $totalIpr = IntellectualProperty::count();
             $grantedIpr = IntellectualProperty::where('djki_status', 'granted')->count();
             $totalLecturers = Lecturer::count();
-            $disbursedIncentives = IncentiveRequest::where('status', 'disbursed')->sum('approved_amount');
-            $pendingIncentives = IncentiveRequest::whereIn('status', ['submitted', 'verified'])->count();
+            $disbursedIncentives = incentive_enabled() ? IncentiveRequest::where('status', 'disbursed')->sum('approved_amount') : 0;
+            $pendingIncentives = incentive_enabled() ? IncentiveRequest::whereIn('status', ['submitted', 'verified'])->count() : 0;
 
             $stats = [
                 'total_publications' => $totalPub,
@@ -119,84 +121,88 @@ class DashboardController extends Controller
                 ->take(5)
                 ->get();
 
-            $recentIncentives = IncentiveRequest::with(['lecturer.user', 'scheme', 'claimable'])
+            $recentIncentives = incentive_enabled() ? IncentiveRequest::with(['lecturer.user', 'scheme', 'claimable'])
                 ->latest()
                 ->take(5)
-                ->get();
+                ->get() : collect();
         }
 
-        // Executive Charts & Trend Visualizations (Untuk Seluruh Role / Eksekutif)
-        $currentYear = (int) date('Y');
-        $years = range($currentYear - 4, $currentYear);
-        $trendPublications = [];
-        $trendIpr = [];
+        // Executive Charts & Trend Visualizations (Untuk Pimpinan, Admin LPPM & Verifikator)
+        $analytics = [];
 
-        foreach ($years as $yr) {
-            $trendPublications[] = Publication::where('publication_year', $yr)->where('verification_status', 'approved')->count();
-            $trendIpr[] = IntellectualProperty::whereYear('application_date', $yr)->count();
+        if ($role !== 'dosen') {
+            $currentYear = (int) date('Y');
+            $years = range($currentYear - 4, $currentYear);
+            $trendPublications = [];
+            $trendIpr = [];
+
+            foreach ($years as $yr) {
+                $trendPublications[] = Publication::where('publication_year', $yr)->where('verification_status', 'approved')->count();
+                $trendIpr[] = IntellectualProperty::whereYear('application_date', $yr)->count();
+            }
+
+            // Proporsi Kategori HKI
+            $iprCategories = [
+                'Hak Cipta' => IntellectualProperty::where('ipr_type', 'copyright')->count(),
+                'Paten Biasa' => IntellectualProperty::where('ipr_type', 'patent')->count(),
+                'Paten Sederhana' => IntellectualProperty::where('ipr_type', 'simple_patent')->count(),
+                'Desain Industri' => IntellectualProperty::where('ipr_type', 'industrial_design')->count(),
+                'Merek Dagang' => IntellectualProperty::where('ipr_type', 'trademark')->count(),
+            ];
+
+            // Sebaran Capaian per Fakultas
+            $faculties = \App\Models\Faculty::with(['departments.lecturers'])->get();
+            $facultyLabels = [];
+            $facultyPublications = [];
+            $facultyIpr = [];
+
+            foreach ($faculties as $faculty) {
+                $facultyLabels[] = $faculty->code ?? $faculty->name;
+                $lecturerIds = $faculty->departments->flatMap->lecturers->pluck('id');
+
+                $pubCount = \App\Models\PublicationAuthor::whereIn('lecturer_id', $lecturerIds)
+                    ->distinct('publication_id')
+                    ->count('publication_id');
+
+                $iprCount = \App\Models\IprInventor::whereIn('lecturer_id', $lecturerIds)
+                    ->distinct('intellectual_property_id')
+                    ->count('intellectual_property_id');
+
+                $facultyPublications[] = $pubCount;
+                $facultyIpr[] = $iprCount;
+            }
+
+            // Realisasi Anggaran Insentif
+            $incentiveBudget = [
+                'disbursed' => (float) IncentiveRequest::where('status', 'disbursed')->sum('approved_amount'),
+                'pending' => (float) IncentiveRequest::whereIn('status', ['submitted', 'verified'])->sum('requested_amount'),
+                'rejected' => (float) IncentiveRequest::where('status', 'rejected')->sum('requested_amount'),
+            ];
+
+            // Top 5 Dosen Kontributor
+            $topLecturers = Lecturer::with(['user', 'department.faculty'])
+                ->withCount(['publications', 'intellectualProperties'])
+                ->get()
+                ->map(function ($lec) {
+                    $lec->total_output = $lec->publications_count + $lec->intellectual_properties_count;
+                    return $lec;
+                })
+                ->sortByDesc('total_output')
+                ->take(5)
+                ->values();
+
+            $analytics = [
+                'years' => $years,
+                'trend_publications' => $trendPublications,
+                'trend_ipr' => $trendIpr,
+                'ipr_categories' => $iprCategories,
+                'faculty_labels' => $facultyLabels,
+                'faculty_publications' => $facultyPublications,
+                'faculty_ipr' => $facultyIpr,
+                'incentive_budget' => $incentiveBudget,
+                'top_lecturers' => $topLecturers,
+            ];
         }
-
-        // Proporsi Kategori HKI
-        $iprCategories = [
-            'Hak Cipta' => IntellectualProperty::where('ipr_type', 'copyright')->count(),
-            'Paten Biasa' => IntellectualProperty::where('ipr_type', 'patent')->count(),
-            'Paten Sederhana' => IntellectualProperty::where('ipr_type', 'simple_patent')->count(),
-            'Desain Industri' => IntellectualProperty::where('ipr_type', 'industrial_design')->count(),
-            'Merek Dagang' => IntellectualProperty::where('ipr_type', 'trademark')->count(),
-        ];
-
-        // Sebaran Capaian per Fakultas
-        $faculties = \App\Models\Faculty::with(['departments.lecturers'])->get();
-        $facultyLabels = [];
-        $facultyPublications = [];
-        $facultyIpr = [];
-
-        foreach ($faculties as $faculty) {
-            $facultyLabels[] = $faculty->code ?? $faculty->name;
-            $lecturerIds = $faculty->departments->flatMap->lecturers->pluck('id');
-
-            $pubCount = \App\Models\PublicationAuthor::whereIn('lecturer_id', $lecturerIds)
-                ->distinct('publication_id')
-                ->count('publication_id');
-
-            $iprCount = \App\Models\IprInventor::whereIn('lecturer_id', $lecturerIds)
-                ->distinct('intellectual_property_id')
-                ->count('intellectual_property_id');
-
-            $facultyPublications[] = $pubCount;
-            $facultyIpr[] = $iprCount;
-        }
-
-        // Realisasi Anggaran Insentif
-        $incentiveBudget = [
-            'disbursed' => (float) IncentiveRequest::where('status', 'disbursed')->sum('approved_amount'),
-            'pending' => (float) IncentiveRequest::whereIn('status', ['submitted', 'verified'])->sum('requested_amount'),
-            'rejected' => (float) IncentiveRequest::where('status', 'rejected')->sum('requested_amount'),
-        ];
-
-        // Top 5 Dosen Kontributor
-        $topLecturers = Lecturer::with(['user', 'department.faculty'])
-            ->withCount(['publications', 'intellectualProperties'])
-            ->get()
-            ->map(function ($lec) {
-                $lec->total_output = $lec->publications_count + $lec->intellectual_properties_count;
-                return $lec;
-            })
-            ->sortByDesc('total_output')
-            ->take(5)
-            ->values();
-
-        $analytics = [
-            'years' => $years,
-            'trend_publications' => $trendPublications,
-            'trend_ipr' => $trendIpr,
-            'ipr_categories' => $iprCategories,
-            'faculty_labels' => $facultyLabels,
-            'faculty_publications' => $facultyPublications,
-            'faculty_ipr' => $facultyIpr,
-            'incentive_budget' => $incentiveBudget,
-            'top_lecturers' => $topLecturers,
-        ];
 
         return view('dashboard.index', compact('stats', 'recentPublications', 'recentIpr', 'recentIncentives', 'analytics'));
     }
